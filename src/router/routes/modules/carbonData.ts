@@ -1,7 +1,6 @@
 import { DEFAULT_LAYOUT } from '../base';
 import { AppRouteRecordRaw } from '../types';
 
-
 const CARBON_DASHBOARD: AppRouteRecordRaw = {
   path: '/carbon',
   name: 'carbonData',

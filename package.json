@@ -12,19 +12,6 @@
     "preview": "npm run build && vite preview --host",
     "type:check": "vue-tsc --noEmit --skipLibCheck"
   },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.vue": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{less,css}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@arco-design/web-vue": "^2.44.7",
     "@arco-themes/vue-onebrand": "^0.0.28",

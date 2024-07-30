@@ -1,11 +1,11 @@
 module.exports = {
-  'printWidth': 80,
-  'tabWidth': 2,
-  'useTabs': false,
-  'singleQuote': true,
-  'semi': true,
-  'trailingComma': 'none',
-  'bracketSpacing': true,
-  'endOfLine': 'auto'
+  tabWidth: 2,
+  semi: true,
+  printWidth: 80,
+  singleQuote: true,
+  quoteProps: 'consistent',
+  htmlWhitespaceSensitivity: 'strict',
+  vueIndentScriptAndStyle: true,
+  endOfLine: 'auto'
 }
 

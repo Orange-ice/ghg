@@ -1,5 +1,3 @@
 <template>
-  <div>
-    碳数据
-  </div>
+  <div>碳数据</div>
 </template>
