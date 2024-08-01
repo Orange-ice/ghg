@@ -1,12 +1,8 @@
 import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import { Message } from '@arco-design/web-vue';
 import { getToken } from '@/utils/auth';
-
-// 添加自定义的一些请求配置
-interface CustomAxiosRequestConfig extends AxiosRequestConfig {
-  needToken?: boolean;
-}
+import { API_PREFIX } from '@/api/prefix';
 
 export interface HttpResponse<T = unknown> {
   code?: string;
@@ -19,13 +15,11 @@ export interface HttpResponse<T = unknown> {
   success?: boolean;
 }
 
-if (import.meta.env.VITE_API_BASE_URL) {
-  axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-}
-
 axios.interceptors.request.use(
-  (config: CustomAxiosRequestConfig) => {
-    const { needToken = true } = config;
+  (config) => {
+    const { needToken = true, prefix = API_PREFIX.GHG } = config;
+    // 设置接口前缀
+    config.url = `${prefix}${config.url}`;
     const token = getToken();
     if (!config.headers) {
       config.headers = {};

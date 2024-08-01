@@ -1,17 +1,21 @@
 import axios from 'axios';
 import type { RouteRecordNormalized } from 'vue-router';
 import { UserState } from '@/store/modules/user/types';
+import { API_PREFIX } from '@/api/prefix';
 
 export interface LoginData {
   username: string;
   password: string;
+  sysTemType: string;
 }
 
 export interface LoginRes {
-  token: string;
+  accesstoken: string;
 }
 export function login(data: LoginData) {
-  return axios.post<LoginRes>('/api/user/login', data);
+  return axios.post<LoginRes>('/sso/oauth/login', data, {
+    prefix: API_PREFIX.EC,
+  });
 }
 
 export function logout() {

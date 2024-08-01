@@ -36,6 +36,7 @@ module.exports = {
     },
   },
   rules: {
+    'import/prefer-default-export': 0,
     'prettier/prettier': 1,
     // Vue: Recommended rules to be closed or modify
     'vue/require-default-prop': 0,
