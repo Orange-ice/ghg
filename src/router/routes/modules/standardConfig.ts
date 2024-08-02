@@ -7,7 +7,6 @@ const WithoutMenuLayout = () => import('@/layout/without-menu-layout.vue');
  * */
 const STANDARD_CONFIG: AppRouteRecordRaw = {
   path: '/standard',
-  name: 'standardConfig',
   component: WithoutMenuLayout,
   redirect: '/standard/config',
   meta: {
@@ -15,13 +14,33 @@ const STANDARD_CONFIG: AppRouteRecordRaw = {
     requiresAuth: true,
   },
   children: [
+    // 标准选择
     {
       path: 'config',
+      name: 'standardConfig',
       component: () => import('@/views/standard-config/index.vue'),
       meta: {
         requiresAuth: true,
         roles: ['*'],
       },
+    },
+    // 选择地区
+    {
+      path: 'area',
+      name: 'standardArea',
+      component: () => import('@/views/standard-config/area.vue'),
+    },
+    // 选择行业
+    {
+      path: 'industry',
+      name: 'standardIndustry',
+      component: () => import('@/views/standard-config/industry.vue'),
+    },
+    // 选择填报周期，最后确认选择的信息
+    {
+      path: 'cycle',
+      name: 'standardCycle',
+      component: () => import('@/views/standard-config/cycle.vue'),
     },
   ],
 };
