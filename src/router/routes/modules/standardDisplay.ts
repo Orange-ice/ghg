@@ -23,7 +23,7 @@ const STANDARD_DISPLAY: AppRouteRecordRaw = {
       meta: {
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'standardConfig',
+        activeMenu: 'standardDisplay',
       },
     },
   ],

@@ -3,6 +3,7 @@
 <template>
   <div>
     标准配置 - 选择标准 <br />
+    <a-button @click="$router.push({ name: 'standardDisplay' })">返回</a-button>
     <a-button type="primary" @click="$router.push({ name: 'standardArea' })"
       >地区</a-button
     >
