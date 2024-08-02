@@ -1,17 +1,18 @@
-import { DEFAULT_LAYOUT } from '@/router/routes/base';
 import { AppRouteRecordRaw } from '@/router/routes/types';
 
+const WithoutMenuLayout = () => import('@/layout/without-menu-layout.vue');
+
+/**
+ *  @description 标准选择页面 新用户首次进去选择及后续新增选择
+ * */
 const STANDARD_CONFIG: AppRouteRecordRaw = {
   path: '/standard',
   name: 'standardConfig',
-  component: DEFAULT_LAYOUT,
+  component: WithoutMenuLayout,
   redirect: '/standard/config',
   meta: {
-    locale: 'menu.standardConfig',
-    requiresAuth: true,
-    icon: 'icon-dashboard',
     order: 0,
-    hideChildrenInMenu: true,
+    requiresAuth: true,
   },
   children: [
     {
@@ -20,7 +21,6 @@ const STANDARD_CONFIG: AppRouteRecordRaw = {
       meta: {
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'standardConfig',
       },
     },
   ],

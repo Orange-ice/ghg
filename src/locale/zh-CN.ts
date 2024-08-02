@@ -23,7 +23,7 @@ export default {
   'navbar.action.locale': '切换为中文',
 
   'menu.carbonData': '碳数据',
-  'menu.standardConfig': '标准管理',
+  'menu.standardDisplay': '标准管理',
 
   ...localeSettings,
   ...localeMessageBox,
