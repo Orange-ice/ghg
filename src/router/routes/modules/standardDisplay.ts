@@ -13,7 +13,7 @@ const STANDARD_DISPLAY: AppRouteRecordRaw = {
     locale: 'menu.standardDisplay',
     requiresAuth: true,
     icon: 'icon-dashboard',
-    order: 0,
+    order: 3,
     hideChildrenInMenu: true,
   },
   children: [

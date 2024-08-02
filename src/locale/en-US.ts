@@ -24,6 +24,8 @@ export default {
 
   'menu.carbonData': '碳数据',
   'menu.standardDisplay': '标准管理',
+  'menu.carbonDataManage': '数据管理',
+  'menu.myDataItem': '我的数据项',
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,
