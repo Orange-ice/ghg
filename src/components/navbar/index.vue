@@ -150,7 +150,7 @@
             :size="32"
             :style="{ marginRight: '8px', cursor: 'pointer' }"
           >
-            <img alt="avatar" :src="avatar" />
+            <img alt="avatar" src="" />
           </a-avatar>
           <template #content>
             <a-doption>
@@ -259,7 +259,7 @@
     const res = await userStore.switchRoles();
     Message.success(res as string);
   };
-  const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void;
+  const toggleDrawerMenu = inject('toggleDrawerMenu', () => {}) as () => void;
 </script>
 
 <style scoped lang="less">
