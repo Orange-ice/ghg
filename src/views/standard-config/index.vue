@@ -315,6 +315,8 @@
 
             .icon {
               font-size: 16px;
+              width: 16px;
+              height: 16px;
             }
           }
         }
@@ -384,6 +386,8 @@
 
                 .icon {
                   font-size: 16px;
+                  width: 16px;
+                  height: 16px;
                   margin-left: 2px;
                 }
               }
