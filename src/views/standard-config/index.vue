@@ -1,8 +1,13 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
   import { onMounted, ref } from 'vue';
+  import StandardRemark from '@/views/standard-config/components/StandardRemark.vue';
 
   const router = useRouter();
+
+  // 查看备注（协助选择标准）
+  const remarkVisible = ref(false);
+
   const goBack = () => {
     // 暂时回到【标准管理】，新用户需要回到工作台
     router.push({ name: 'standardDisplay' });
@@ -10,6 +15,11 @@
 
   const calcHeight = (length: number) => {
     return `${Math.ceil(length / 3) * 180}px`;
+  };
+
+  // 协助选择标准
+  const assistRemark = () => {
+    remarkVisible.value = true;
   };
 
   const data = ref<any[]>([]);
@@ -181,7 +191,7 @@
                   <span>使用此标准</span>
                   <iconpark-icon class="icon" name="standard-confirm" />
                 </div>
-                <div>
+                <div @click="assistRemark">
                   <span> 需要协助选择标准？ </span>
                   <iconpark-icon class="icon" name="standard-help" />
                 </div>
@@ -192,6 +202,8 @@
       </div>
     </div>
   </div>
+
+  <StandardRemark v-model="remarkVisible" />
 </template>
 
 <style lang="less" scoped>
