@@ -38,7 +38,7 @@
       font-size: 16px;
       color: var(--text-1);
       line-height: 22px;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
     > p {
@@ -46,6 +46,7 @@
       font-size: 14px;
       color: var(--text-1);
       line-height: 24px;
+      height: 435px;
     }
 
     .footer {
