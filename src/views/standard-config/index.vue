@@ -2,11 +2,15 @@
   import { useRouter } from 'vue-router';
   import { onMounted, ref } from 'vue';
   import StandardRemark from '@/views/standard-config/components/StandardRemark.vue';
+  import StandardConfirm from '@/views/standard-config/components/StandardConfirm.vue';
 
   const router = useRouter();
 
   // 查看备注（协助选择标准）
   const remarkVisible = ref(false);
+
+  // 确定标准选择
+  const confirmVisible = ref(false);
 
   const goBack = () => {
     // 暂时回到【标准管理】，新用户需要回到工作台
@@ -20,6 +24,11 @@
   // 协助选择标准
   const assistRemark = () => {
     remarkVisible.value = true;
+  };
+
+  // 选择标准
+  const standardSelect = () => {
+    confirmVisible.value = true;
   };
 
   const data = ref<any[]>([]);
@@ -187,7 +196,7 @@
               </p>
 
               <div class="operation">
-                <div>
+                <div @click="standardSelect">
                   <span>使用此标准</span>
                   <iconpark-icon class="icon" name="standard-confirm" />
                 </div>
@@ -204,13 +213,18 @@
   </div>
 
   <StandardRemark v-model="remarkVisible" />
+  <StandardConfirm v-model="confirmVisible" />
 </template>
 
 <style lang="less" scoped>
+  @border-color: #e9f0ed;
+
   .standard-select {
     padding: 30px 24px 48px;
-    background: var(--stabdard-select-bg);
+    background-image: url('@/assets/images/standard-select-bg.png');
+    background-size: cover;
     height: 100%;
+    overflow: auto;
 
     .header {
       display: flex;
@@ -219,6 +233,8 @@
 
       .icon {
         font-size: 32px;
+        width: 32px;
+        height: 32px;
         margin-right: 4px;
         cursor: pointer;
       }
@@ -234,7 +250,7 @@
 
     .content {
       .standard-wrapper {
-        background: #f3f8f9;
+        //background: #f3f8f9;
         border: solid 2px var(--color-white);
         border-radius: 8px;
 
@@ -319,8 +335,8 @@
 
             // 每行的中间元素
             &:nth-child(3n-1) {
-              border-left: solid 1px #e9f0ed;
-              border-right: solid 1px #e9f0ed;
+              border-left: solid 1px @border-color;
+              border-right: solid 1px @border-color;
             }
 
             > img {
@@ -344,7 +360,7 @@
 
             .desc {
               font-size: 13px;
-              color: #86909c;
+              color: var(--color-text-3);
               line-height: 20px;
             }
 
@@ -393,7 +409,7 @@
 
         // 第二行开始的元素(第三个元素之后的)
         .list .list-item:nth-child(3) ~ .list-item {
-          border-top: solid 1px #e9f0ed;
+          border-top: solid 1px @border-color;
         }
       }
     }
