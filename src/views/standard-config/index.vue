@@ -340,6 +340,9 @@
           height: 180px;
           overflow: hidden;
           transition: height 0.3s;
+          //margin-right: -10px;
+          //margin-left: -10px;
+          //margin-top: -10px;
 
           &.expand {
             height: 540px;
@@ -358,6 +361,18 @@
               border-left: solid 1px #e9f0ed;
               border-right: solid 1px #e9f0ed;
             }
+
+            //&:nth-child(3n) {
+            //  margin-right: 10px;
+            //}
+            //
+            //&:nth-child(3n-2) {
+            //  margin-left: 10px;
+            //}
+            //
+            //&:nth-child(-n + 3) {
+            //  margin-top: 10px;
+            //}
 
             > img {
               width: 36px;
@@ -386,14 +401,11 @@
 
             .operation {
               display: flex;
-              justify-content: space-between;
               color: #054138;
               bottom: 20px;
               position: absolute;
               opacity: 0;
               transition: all 0.3s;
-              // 减左右边距
-              width: calc(100% - 80px - 32px);
 
               > div {
                 display: flex;
