@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
-  import { ref } from 'vue';
+  import { onMounted, ref } from 'vue';
 
   const router = useRouter();
   const goBack = () => {
@@ -8,7 +8,105 @@
     router.push({ name: 'standardDisplay' });
   };
 
-  const expandRef = ref(false);
+  const calcHeight = (length: number) => {
+    return `${Math.ceil(length / 3) * 180}px`;
+  };
+
+  const data = ref<any[]>([]);
+  onMounted(() => {
+    data.value = [
+      {
+        type: '',
+        name: '中国碳核算标准或指南',
+        children: [
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+        ],
+      },
+      {
+        type: '',
+        name: '中国碳核算标准或指南',
+        children: [
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+        ],
+      },
+      {
+        type: '',
+        name: '中国碳核算标准或指南',
+        children: [
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+        ],
+      },
+      {
+        type: '',
+        name: '中国碳核算标准或指南',
+        children: [
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+          {
+            name: '中国碳核算标准',
+            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
+          },
+        ],
+      },
+    ];
+
+    data.value.forEach((item) => {
+      if (item.children.length) {
+        item.expand = false;
+      }
+    });
+  });
 </script>
 
 <!--<template>-->
@@ -32,26 +130,50 @@
     </div>
 
     <div class="content">
-      <div class="standard-wrapper">
-        <div :class="{ category: true, expand: expandRef }">
+      <div
+        v-for="(category, index) in data"
+        :key="index"
+        class="standard-wrapper"
+      >
+        <div
+          class="category"
+          :style="{
+            height: calcHeight(category.expand ? category.children.length : 3),
+          }"
+        >
           <iconpark-icon name="dot" class="symbol" />
           <span class="title">核算标准</span>
-          <span class="name">中国碳核算标准或指南</span>
-          <div class="expand" @click="expandRef = !expandRef">
-            <span>{{ expandRef ? '收起' : '展开' }}全部标准</span>
+          <span class="name">{{ category.name }}</span>
+          <div
+            v-if="category.children.length > 3"
+            class="expand"
+            @click="category.expand = !category.expand"
+          >
+            <span>{{ category.expand ? '收起' : '展开' }}全部标准</span>
             <iconpark-icon
-              :name="expandRef ? 'collect' : 'expand'"
+              :name="category.expand ? 'collect' : 'expand'"
               class="icon"
             />
           </div>
         </div>
-        <div :class="{ list: true, expand: expandRef }">
-          <div class="list-item">
+        <div
+          class="list"
+          :style="{
+            height: calcHeight(category.expand ? category.children.length : 3),
+          }"
+        >
+          <div
+            v-for="(standard, i) in category.expand
+              ? category.children
+              : category.children.slice(0, 3)"
+            :key="i"
+            class="list-item"
+          >
             <img src="@/assets/images/standard.png" alt="" />
             <div>
-              <h3 class="name">中国碳核算标准</h3>
+              <h3 class="name">{{ standard.name }}</h3>
               <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+                {{ standard.desc }}
               </p>
 
               <div class="operation">
@@ -66,169 +188,6 @@
               </div>
             </div>
           </div>
-
-          <!--          -->
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="list-item">
-            <img src="@/assets/images/standard.png" alt="" />
-            <div>
-              <h3 class="name">中国碳核算标准</h3>
-              <p class="desc">
-                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
-              </p>
-
-              <div class="operation">
-                <div>
-                  <span>使用此标准</span>
-                  <iconpark-icon class="icon" name="standard-confirm" />
-                </div>
-                <div>
-                  <span> 需要协助选择标准？ </span>
-                  <iconpark-icon class="icon" name="standard-help" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--          -->
         </div>
       </div>
     </div>
@@ -269,11 +228,14 @@
 
         display: flex;
 
+        &:not(:first-child) {
+          margin-top: 24px;
+        }
+
         .category {
           flex-shrink: 0;
           width: 264px;
-          //min-height: 180px;
-          height: 180px;
+          min-height: 180px;
           padding: 42px 32px;
           border-radius: 8px 0 0 8px;
           backdrop-filter: blur(6px);
@@ -289,10 +251,6 @@
           position: relative;
 
           transition: height 0.3s;
-
-          &.expand {
-            height: 540px;
-          }
 
           .symbol {
             position: absolute;
@@ -337,16 +295,7 @@
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           flex-grow: 1;
-          height: 180px;
-          overflow: hidden;
           transition: height 0.3s;
-          //margin-right: -10px;
-          //margin-left: -10px;
-          //margin-top: -10px;
-
-          &.expand {
-            height: 540px;
-          }
 
           &-item {
             height: 180px;
@@ -361,18 +310,6 @@
               border-left: solid 1px #e9f0ed;
               border-right: solid 1px #e9f0ed;
             }
-
-            //&:nth-child(3n) {
-            //  margin-right: 10px;
-            //}
-            //
-            //&:nth-child(3n-2) {
-            //  margin-left: 10px;
-            //}
-            //
-            //&:nth-child(-n + 3) {
-            //  margin-top: 10px;
-            //}
 
             > img {
               width: 36px;
