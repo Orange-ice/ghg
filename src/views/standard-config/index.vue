@@ -1,14 +1,440 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+
+  const router = useRouter();
+  const goBack = () => {
+    // 暂时回到【标准管理】，新用户需要回到工作台
+    router.push({ name: 'standardDisplay' });
+  };
+
+  const expandRef = ref(false);
+</script>
+
+<!--<template>-->
+<!--  <div>-->
+<!--    标准配置 - 选择标准 <br />-->
+<!--    <a-button @click="$router.push({ name: 'standardDisplay' })">返回</a-button>-->
+<!--    <a-button type="primary" @click="$router.push({ name: 'standardArea' })"-->
+<!--      >地区</a-button-->
+<!--    >-->
+<!--    <a-button @click="$router.push({ name: 'standardIndustry' })"-->
+<!--      >行业</a-button-->
+<!--    >-->
+<!--  </div>-->
+<!--</template>-->
 
 <template>
-  <div>
-    标准配置 - 选择标准 <br />
-    <a-button @click="$router.push({ name: 'standardDisplay' })">返回</a-button>
-    <a-button type="primary" @click="$router.push({ name: 'standardArea' })"
-      >地区</a-button
-    >
-    <a-button @click="$router.push({ name: 'standardIndustry' })"
-      >行业</a-button
-    >
+  <div class="standard-select">
+    <div class="header">
+      <iconpark-icon name="back" class="icon" @click="goBack" />
+      <span>欢迎使用积木碳云，请选择核算标准</span>
+    </div>
+
+    <div class="content">
+      <div class="standard-wrapper">
+        <div :class="{ category: true, expand: expandRef }">
+          <iconpark-icon name="dot" class="symbol" />
+          <span class="title">核算标准</span>
+          <span class="name">中国碳核算标准或指南</span>
+          <div class="expand" @click="expandRef = !expandRef">
+            <span>{{ expandRef ? '收起' : '展开' }}全部标准</span>
+            <iconpark-icon
+              :name="expandRef ? 'collect' : 'expand'"
+              class="icon"
+            />
+          </div>
+        </div>
+        <div :class="{ list: true, expand: expandRef }">
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--          -->
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-item">
+            <img src="@/assets/images/standard.png" alt="" />
+            <div>
+              <h3 class="name">中国碳核算标准</h3>
+              <p class="desc">
+                这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本
+              </p>
+
+              <div class="operation">
+                <div>
+                  <span>使用此标准</span>
+                  <iconpark-icon class="icon" name="standard-confirm" />
+                </div>
+                <div>
+                  <span> 需要协助选择标准？ </span>
+                  <iconpark-icon class="icon" name="standard-help" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--          -->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style lang="less" scoped>
+  .standard-select {
+    padding: 30px 24px 48px;
+    background: var(--stabdard-select-bg);
+    height: 100%;
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+
+      .icon {
+        font-size: 32px;
+        margin-right: 4px;
+        cursor: pointer;
+      }
+
+      > span {
+        font-size: 24px;
+        color: var(--text-1);
+        line-height: 32px;
+        text-align: justify;
+        font-style: normal;
+      }
+    }
+
+    .content {
+      .standard-wrapper {
+        background: #f3f8f9;
+        border: solid 2px var(--color-white);
+        border-radius: 8px;
+
+        display: flex;
+
+        .category {
+          flex-shrink: 0;
+          width: 264px;
+          //min-height: 180px;
+          height: 180px;
+          padding: 42px 32px;
+          border-radius: 8px 0 0 8px;
+          backdrop-filter: blur(6px);
+          background: radial-gradient(
+            263% 157% at 100% -9%,
+            #a9e9c5 0%,
+            #087d6b 45%,
+            #054138 100%
+          );
+          display: flex;
+          flex-direction: column;
+          color: var(--color-white);
+          position: relative;
+
+          transition: height 0.3s;
+
+          &.expand {
+            height: 540px;
+          }
+
+          .symbol {
+            position: absolute;
+            left: 24px;
+            top: 24px;
+            width: 40px;
+            height: 32px;
+            font-size: 40px;
+          }
+
+          .title {
+            font-size: 18px;
+            line-height: 20px;
+            margin-bottom: 4px;
+          }
+
+          .name {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 20px;
+          }
+
+          .expand {
+            font-size: 12px;
+            line-height: 20px;
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+
+            .icon {
+              font-size: 16px;
+            }
+          }
+        }
+
+        .list {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          flex-grow: 1;
+          height: 180px;
+          overflow: hidden;
+          transition: height 0.3s;
+
+          &.expand {
+            height: 540px;
+          }
+
+          &-item {
+            height: 180px;
+            padding: 40px 32px;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            transition: all 0.3s;
+
+            // 每行的中间元素
+            &:nth-child(3n-1) {
+              border-left: solid 1px #e9f0ed;
+              border-right: solid 1px #e9f0ed;
+            }
+
+            > img {
+              width: 36px;
+              margin-right: 12px;
+              transition: all 0.3s;
+            }
+
+            .name,
+            .desc {
+              margin: 0;
+              transition: all 0.3s;
+            }
+
+            .name {
+              font-size: 18px;
+              color: #000000;
+              line-height: 24px;
+              margin-bottom: 8px;
+            }
+
+            .desc {
+              font-size: 13px;
+              color: #86909c;
+              line-height: 20px;
+            }
+
+            .operation {
+              display: flex;
+              justify-content: space-between;
+              color: #054138;
+              bottom: 20px;
+              position: absolute;
+              opacity: 0;
+              transition: all 0.3s;
+              // 减左右边距
+              width: calc(100% - 80px - 32px);
+
+              > div {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                user-select: none;
+
+                &:first-child {
+                  margin-right: 24px;
+                }
+
+                .icon {
+                  font-size: 16px;
+                  margin-left: 2px;
+                }
+              }
+            }
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.2);
+              box-shadow: 0 15px 30px 0 rgba(8, 68, 46, 0.12),
+                -1px -1px 0px 0px rgba(248, 254, 251, 0.5);
+
+              > img,
+              .name,
+              .desc {
+                transform: translateY(-16px);
+              }
+
+              .operation {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        // 第二行开始的元素(第三个元素之后的)
+        .list .list-item:nth-child(3) ~ .list-item {
+          border-top: solid 1px #e9f0ed;
+        }
+      }
+    }
+  }
+</style>

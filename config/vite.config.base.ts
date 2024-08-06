@@ -7,7 +7,13 @@ import configArcoStyleImportPlugin from './plugin/arcoStyleImport';
 
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag === 'iconpark-icon',
+        },
+      },
+    }),
     vueJsx(),
     svgLoader({ svgoConfig: {} }),
     configArcoStyleImportPlugin(),
