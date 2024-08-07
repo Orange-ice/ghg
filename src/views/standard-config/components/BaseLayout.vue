@@ -10,34 +10,39 @@
 </script>
 
 <template>
-  <div class="header">
-    <iconpark-icon
-      name="back"
-      class="icon"
-      @click="$router.push({ name: backRoute })"
-    />
-    <span>{{ title }}</span>
-  </div>
-
-  <div class="content">
-    <div class="title">
-      <iconpark-icon name="guide" class="icon" />
-      <span>核算标准</span>
-      <span class="name">中国碳核算标准或指南</span>
-      <span class="type">地方碳核算指南</span>
-      <!--        <a-select-->
-      <!--          style="margin-left: auto; width: 128px"-->
-      <!--          size="small"-->
-      <!--        ></a-select>-->
+  <div class="container">
+    <div class="header">
+      <iconpark-icon
+        name="back"
+        class="icon"
+        @click="$router.push({ name: backRoute })"
+      />
+      <span>{{ title }}</span>
     </div>
-    <p class="desc">
-      中国碳核算标准或指南行业标准指南用于测量、报告和管理组织温室气体排放的国际性标准
-    </p>
-    <slot></slot>
+
+    <div class="content">
+      <div class="title">
+        <iconpark-icon name="guide" class="icon" />
+        <span>核算标准</span>
+        <span class="name">中国碳核算标准或指南</span>
+        <span class="type">地方碳核算指南</span>
+        <!--        <a-select-->
+        <!--          style="margin-left: auto; width: 128px"-->
+        <!--          size="small"-->
+        <!--        ></a-select>-->
+      </div>
+      <p class="desc">
+        中国碳核算标准或指南行业标准指南用于测量、报告和管理组织温室气体排放的国际性标准
+      </p>
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
+  .container {
+    margin: 26px 24px;
+  }
   .header {
     display: flex;
     align-items: center;
