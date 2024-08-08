@@ -22,6 +22,6 @@
 
 <style lang="less" scoped>
   .area {
-    margin: 26px 24px;
+    //margin: 26px 24px;
   }
 </style>
