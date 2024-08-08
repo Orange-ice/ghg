@@ -12,6 +12,7 @@
     title-align="start"
     width="704px"
     :cancel-button-props="{ type: 'outline' }"
+    @ok="$router.push({ name: 'carbonDashboard' })"
   >
     <div class="container">
       <div class="tip">

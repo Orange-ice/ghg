@@ -3,14 +3,22 @@
   import { onMounted, ref } from 'vue';
   import StandardRemark from '@/views/standard-config/components/StandardRemark.vue';
   import StandardConfirm from '@/views/standard-config/components/StandardConfirm.vue';
+  import { getAllStandards } from '@/api/standard-config';
 
   const router = useRouter();
+
+  // 所有可选标准
+  const standards = ref([]);
 
   // 查看备注（协助选择标准）
   const remarkVisible = ref(false);
 
   // 确定标准选择
   const confirmVisible = ref(false);
+
+  const queryStandards = async () => {
+    const res = await getAllStandards();
+  };
 
   const goBack = () => {
     // 暂时回到【标准管理】，新用户需要回到工作台
@@ -33,6 +41,8 @@
 
   const data = ref<any[]>([]);
   onMounted(() => {
+    // queryStandards();
+
     data.value = [
       {
         type: '',
@@ -127,19 +137,6 @@
     });
   });
 </script>
-
-<!--<template>-->
-<!--  <div>-->
-<!--    标准配置 - 选择标准 <br />-->
-<!--    <a-button @click="$router.push({ name: 'standardDisplay' })">返回</a-button>-->
-<!--    <a-button type="primary" @click="$router.push({ name: 'standardArea' })"-->
-<!--      >地区</a-button-->
-<!--    >-->
-<!--    <a-button @click="$router.push({ name: 'standardIndustry' })"-->
-<!--      >行业</a-button-->
-<!--    >-->
-<!--  </div>-->
-<!--</template>-->
 
 <template>
   <div class="standard-select">
