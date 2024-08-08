@@ -23,7 +23,10 @@ export function logout() {
 }
 
 export function getUserInfo() {
-  return axios.post<UserState>('/api/user/info');
+  return axios.get<UserState>('/roles/getUserInfo', {
+    prefix: API_PREFIX.PERMISSION,
+    params: { projectType: 'ghg' },
+  });
 }
 
 export function getMenuList() {
