@@ -17,7 +17,7 @@ const CARBON_DASHBOARD: AppRouteRecordRaw = {
     {
       path: 'dashboard',
       name: 'carbonDashboard',
-      component: () => import('@/views/carbon-data/index.vue'),
+      component: () => import('@/views/carbon-dashboard/index.vue'),
       meta: {
         requiresAuth: true,
         roles: ['*'],

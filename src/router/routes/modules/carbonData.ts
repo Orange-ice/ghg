@@ -17,7 +17,7 @@ const CARBON_DATA: AppRouteRecordRaw = {
     {
       path: 'data',
       name: 'dataManege',
-      component: () => import('@/views/carbon-data-manage/index.vue'),
+      component: () => import('@/views/carbon-data/index.vue'),
       meta: {
         requiresAuth: true,
         roles: ['*'],
