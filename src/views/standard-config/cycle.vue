@@ -40,7 +40,7 @@
     </div>
 
     <div class="operation">
-      <a-button style="margin-right: 12px" type="outline">返回重选</a-button>
+      <a-button class="mr-12px" type="outline">返回重选</a-button>
       <a-button type="primary" @click="confirmVisible = true">
         开始使用
       </a-button>

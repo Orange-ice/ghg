@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="container">
+  <div class="base-layout">
     <div class="header">
       <iconpark-icon
         name="back"
@@ -40,7 +40,7 @@
 </template>
 
 <style lang="less" scoped>
-  .container {
+  .base-layout {
     margin: 26px 24px;
   }
   .header {
