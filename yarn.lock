@@ -56,10 +56,10 @@
     "@babel/types" "^7.12.12"
     "@types/node" "^16.11.10"
 
-"@arco-themes/vue-onebrand@^0.0.28":
-  version "0.0.28"
-  resolved "https://registry.npmmirror.com/@arco-themes/vue-onebrand/-/vue-onebrand-0.0.28.tgz#4d12458d51889bc14328f400459f2191e1ac7eaa"
-  integrity sha512-sQhXPnATmIZb8669vMW+uNdpI2GJsUYQYdaGCRN/w5PUzhHSOmn7qBoSOeo0AwpBEZlgrSFMQzKZB5XpcDmkTw==
+"@arco-themes/vue-ecv3@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmmirror.com/@arco-themes/vue-ecv3/-/vue-ecv3-0.0.5.tgz#7c8eaaefae8d4ff546b433b616763d9c8915ae6c"
+  integrity sha512-24hsaBtSWUriGlOAiEWLDfF8d6hMnl5XXBbC2f1si93O56E/Jscuw/uaFoyR/peRO3LyO/EP0ZcnwjaXv/NqLg==
 
 "@babel/code-frame@^7.23.5", "@babel/code-frame@^7.24.7":
   version "7.24.7"
@@ -5552,7 +5552,7 @@ universalify@^2.0.0:
   resolved "https://registry.npmmirror.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
-unocss@^0.56.0:
+unocss@0.56.5:
   version "0.56.5"
   resolved "https://registry.npmmirror.com/unocss/-/unocss-0.56.5.tgz#7f5f75998fe9db01f70bd2eeae5b7cb83f257442"
   integrity sha512-tO+9St4CntSjHpLXZqBo0/etS06MtvFF1NEny/qFJCL9sCopWwmDKuzW6/LIb4wfqZLdMpVFoEACMNv8nP849A==

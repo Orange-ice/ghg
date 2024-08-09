@@ -8,7 +8,7 @@ import { vitePluginForArco } from '@arco-plugins/vite-vue';
 
 export default function configArcoStyleImportPlugin() {
   const arcoResolverPlugin = vitePluginForArco({
-    theme: '@arco-themes/vue-onebrand'
+    theme: '@arco-themes/vue-ecv3',
   });
   return arcoResolverPlugin;
 }
