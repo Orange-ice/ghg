@@ -33,7 +33,12 @@
             <icon-plus />
           </template>
         </a-button>
-        <a-button type="primary">数据填报</a-button>
+        <a-button
+          type="primary"
+          @click="$router.push({ name: 'carbonReport' })"
+        >
+          数据填报
+        </a-button>
       </div>
 
       <a-tabs default-active-key="2">
