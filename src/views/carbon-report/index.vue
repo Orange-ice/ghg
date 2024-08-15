@@ -1,29 +1,13 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import { TableColumnData } from '@arco-design/web-vue';
-  import EmissionTypeSelect from '@/views/carbon-report/components/EmissionTypeSelect.vue';
+  import { onMounted } from 'vue';
+  import { useCDataStore } from '@/store';
+  import TreeNode from '@/views/carbon-report/components/TreeNode.vue';
 
-  const tableColumns: TableColumnData[] = [
-    { title: '数据项名称', dataIndex: 'name' },
-    { title: '排放类型', slotName: 'emissionType', width: 120 },
-    { title: '消耗量 t', slotName: 'emission' },
-    { title: '单位热值含碳量', dataIndex: '' },
-    { title: '电力排放因子', dataIndex: '' },
-    { title: '碳氧化率', dataIndex: '' },
-    { title: '能源消耗量', dataIndex: '' },
-    { title: '碳排放量', dataIndex: '' },
-    { title: '操作', dataIndex: '' },
-  ];
-  const data = ref([
-    { name: '系统数据项-1' },
-    { name: '系统数据项-2' },
-    { name: '系统数据项-3', emission: 123 },
-    { name: '系统数据项-4', emission: 43.012 },
-    { name: '系统数据项-5' },
-    { name: '系统数据项-6' },
-    { name: '系统数据项-7' },
-    { name: '系统数据项-8' },
-  ]);
+  const cdataStore = useCDataStore();
+
+  onMounted(() => {
+    cdataStore.queryDetail('1823257653503815680');
+  });
 </script>
 
 <template>
@@ -82,56 +66,7 @@
         </div>
       </div>
       <div class="main">
-        <a-collapse :default-active-key="['1', 2]" :bordered="false">
-          <a-collapse-item header="范围一：燃料燃烧" key="1">
-            <template #extra>
-              <a-button type="outline" @click.stop>复制</a-button>
-            </template>
-            <div class="flex items-center whitespace-nowrap py-12px px-16px">
-              <span class="mr-auto text-14px lh-20px">数据表1</span>
-              <a-select
-                size="small"
-                class="w-200px"
-                placeholder="请选择"
-              ></a-select>
-            </div>
-            <a-table
-              :data="data"
-              :columns="tableColumns"
-              :pagination="false"
-              :bordered="{ cell: true }"
-              :hoverable="false"
-              class="mb-18px"
-            >
-              <template #emissionType>
-                <EmissionTypeSelect />
-              </template>
-
-              <template #emission="{ record }">
-                <a-input
-                  placeholder="请输入"
-                  :default-value="record.emission"
-                />
-              </template>
-            </a-table>
-          </a-collapse-item>
-          <a-collapse-item
-            header="Beijing Toutiao Technology Co., Ltd."
-            :key="2"
-          >
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-          </a-collapse-item>
-          <a-collapse-item
-            header="Beijing Toutiao Technology Co., Ltd."
-            key="3"
-          >
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-            <div>Beijing Toutiao Technology Co., Ltd.</div>
-          </a-collapse-item>
-        </a-collapse>
+        <TreeNode />
       </div>
     </div>
   </div>
@@ -234,42 +169,8 @@
         flex: 1;
         background: var(--color-white);
         padding: 26px 24px;
-
-        :deep(.arco-collapse-item-header) {
-          background: #eefbee;
-        }
-
-        :deep(.arco-collapse-item-content) {
-          background: var(--color-white);
-          padding: 0;
-        }
-
-        :deep(.arco-collapse-item-content-box) {
-          padding: 0;
-        }
-
-        // 表格 - tbody
-        :deep(.arco-table-td) {
-          background: #fafbfc;
-        }
-
-        // 输入框
-        :deep(
-            .arco-input-wrapper:focus-within,
-            .arco-input-wrapper.arco-input-focus
-          ) {
-          background-color: initial;
-          box-shadow: initial;
-          border-color: transparent;
-        }
-
-        :deep(.arco-input-wrapper, .arco-input-wrapper:hover) {
-          background-color: initial;
-        }
-
-        :deep(.arco-input-wrapper .arco-input::placeholder) {
-          color: #c9cdd4;
-        }
+        height: calc(100vh - 218px);
+        overflow: auto;
       }
     }
   }
