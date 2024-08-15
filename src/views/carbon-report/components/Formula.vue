@@ -1,35 +1,12 @@
 <script setup lang="ts">
   import { Formula } from '@/api/carbon-report/types';
-  import { TableColumnData } from '@arco-design/web-vue';
-  import { ref } from 'vue';
   import EmissionTypeSelect from '@/views/carbon-report/components/EmissionTypeSelect.vue';
+  import FieldDisplay from '@/views/carbon-report/components/FieldDisplay.vue';
 
-  defineProps<{
+  const props = defineProps<{
     formula: Formula;
     index: number;
   }>();
-
-  const tableColumns: TableColumnData[] = [
-    { title: '数据项名称', dataIndex: 'name' },
-    { title: '排放类型', slotName: 'emissionType', width: 120 },
-    { title: '消耗量 t', slotName: 'emission' },
-    { title: '单位热值含碳量', dataIndex: '' },
-    { title: '电力排放因子', dataIndex: '' },
-    { title: '碳氧化率', dataIndex: '' },
-    { title: '能源消耗量', dataIndex: '' },
-    { title: '碳排放量', dataIndex: '' },
-    { title: '操作', dataIndex: '' },
-  ];
-  const data = ref([
-    { name: '系统数据项-1' },
-    { name: '系统数据项-2' },
-    { name: '系统数据项-3', emission: '123' },
-    { name: '系统数据项-4', emission: '43.012' },
-    { name: '系统数据项-5' },
-    { name: '系统数据项-6' },
-    { name: '系统数据项-7' },
-    { name: '系统数据项-8' },
-  ]);
 </script>
 
 <template>
@@ -43,18 +20,27 @@
   </div>
 
   <a-table
-    :data="data"
-    :columns="tableColumns"
+    :data="formula.valuesVoList"
     :pagination="false"
     :bordered="{ cell: true }"
     :hoverable="false"
   >
-    <template #emissionType>
-      <EmissionTypeSelect />
-    </template>
+    <!--    <template #emissionType>-->
+    <!--      <EmissionTypeSelect />-->
+    <!--    </template>-->
 
-    <template #emission="{ record }">
-      <a-input placeholder="请输入" :default-value="record.emission" />
+    <!--    <template #emission="{ record }">-->
+    <!--      <a-input placeholder="请输入" :default-value="record.emission" />-->
+    <!--    </template>-->
+
+    <template #columns>
+      <a-table-column v-for="(head, i) in formula.fieldsVoList" :key="head.id">
+        <template #title> {{ head.name }} {{ i }}</template>
+        <template #cell="{ record }">
+          <FieldDisplay :field="record.values[i]" />
+        </template>
+      </a-table-column>
+      <a-table-column title="操作" :width="56" fixed="right"></a-table-column>
     </template>
   </a-table>
 </template>
@@ -63,6 +49,11 @@
   // 表格 - tbody
   :deep(.arco-table-td) {
     background: #fafbfc;
+  }
+
+  :deep(.arco-table-th-title) {
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   // 输入框

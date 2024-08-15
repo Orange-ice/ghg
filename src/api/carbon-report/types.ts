@@ -1,4 +1,4 @@
-// 字段
+// 字段表头
 interface Field {
   code: string;
   // 字段类型
@@ -7,7 +7,7 @@ interface Field {
   name: string;
 }
 
-interface FieldValue extends Field {
+export interface FieldValue extends Field {
   factorVal?: string;
   inputVal?: string;
   optioned?: string;
@@ -20,7 +20,7 @@ interface FieldValue extends Field {
 interface ValueVoItem {
   id: string;
   emfId: string;
-  children: FieldValue[];
+  values: FieldValue[];
 }
 
 // 公式数据
