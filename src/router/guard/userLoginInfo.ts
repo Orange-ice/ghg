@@ -1,7 +1,7 @@
 import type { Router, LocationQueryRaw } from 'vue-router';
 import NProgress from 'nprogress'; // progress bar
 
-import { useUserStore } from '@/store';
+import { useUserStore, useDictStore } from '@/store';
 import { isLogin } from '@/utils/auth';
 
 export default function setupUserLoginInfoGuard(router: Router) {
@@ -14,6 +14,11 @@ export default function setupUserLoginInfoGuard(router: Router) {
       } else {
         try {
           await userStore.info();
+
+          const dictStore = useDictStore();
+          if (!Object.keys(dictStore.dictionaryMap).length) {
+            await dictStore.queryDict();
+          }
           next();
         } catch (error) {
           await userStore.logout();
