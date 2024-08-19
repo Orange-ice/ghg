@@ -24,10 +24,10 @@
       <div class="text-12px lh-24px color-#00368F px-6px bg-#E8ECFF">
         黑色金属延压业
       </div>
-      <a-button size="small" type="outline" class="ml-auto mr-12px">
-        下载模板
-      </a-button>
-      <a-button size="small" type="outline">导入模板</a-button>
+      <!--      <a-button size="small" type="outline" class="ml-auto mr-12px">-->
+      <!--        下载模板-->
+      <!--      </a-button>-->
+      <!--      <a-button size="small" type="outline">导入模板</a-button>-->
     </div>
 
     <div class="title">
