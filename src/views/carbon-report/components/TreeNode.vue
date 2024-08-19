@@ -3,6 +3,7 @@
   import { useCDataStore } from '@/store';
   import Formula from '@/views/carbon-report/components/Formula.vue';
 
+  const COLORS = ['green', 'orange', 'blue'];
   const cdataStore = useCDataStore();
 
   const defaultActiveKeys = computed(() => {
@@ -13,10 +14,10 @@
 <template>
   <a-collapse :default-active-key="defaultActiveKeys" :bordered="false">
     <a-collapse-item
-      v-for="group in cdataStore.fgVoList"
+      v-for="(group, groupIndex) in cdataStore.fgVoList"
       :key="group.id"
       :header="group.name"
-      class="pb-20px"
+      :class="`pb-20px color-${COLORS[groupIndex % COLORS.length]}`"
     >
       <template #extra>
         <a-select
@@ -58,6 +59,24 @@
 <style lang="less" scoped>
   :deep(.arco-collapse-item-header) {
     background: #eefbee;
+  }
+
+  .color-green {
+    :deep(.arco-collapse-item-header) {
+      background: #eefbee;
+    }
+  }
+
+  .color-orange {
+    :deep(.arco-collapse-item-header) {
+      background: #fef4e7;
+    }
+  }
+
+  .color-blue {
+    :deep(.arco-collapse-item-header) {
+      background: #ecf2ff;
+    }
   }
 
   :deep(.arco-collapse-item-content) {

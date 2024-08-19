@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Formula } from '@/api/carbon-report/types';
-  import EmissionTypeSelect from '@/views/carbon-report/components/EmissionTypeSelect.vue';
   import FieldDisplay from '@/views/carbon-report/components/FieldDisplay.vue';
 
   const props = defineProps<{
@@ -25,22 +24,18 @@
     :bordered="{ cell: true }"
     :hoverable="false"
   >
-    <!--    <template #emissionType>-->
-    <!--      <EmissionTypeSelect />-->
-    <!--    </template>-->
-
-    <!--    <template #emission="{ record }">-->
-    <!--      <a-input placeholder="请输入" :default-value="record.emission" />-->
-    <!--    </template>-->
-
     <template #columns>
       <a-table-column v-for="(head, i) in formula.fieldsVoList" :key="head.id">
-        <template #title> {{ head.name }} {{ i }}</template>
+        <template #title> {{ head.name }}</template>
         <template #cell="{ record }">
           <FieldDisplay :field="record.values[i]" />
         </template>
       </a-table-column>
-      <a-table-column title="操作" :width="56" fixed="right"></a-table-column>
+      <a-table-column title="操作" :width="56" fixed="right">
+        <template #cell>
+          <icon-delete />
+        </template>
+      </a-table-column>
     </template>
   </a-table>
 </template>
@@ -48,6 +43,7 @@
 <style lang="less" scoped>
   // 表格 - tbody
   :deep(.arco-table-td) {
+    height: 48px;
     background: #fafbfc;
   }
 
@@ -55,7 +51,6 @@
     font-size: 12px;
     white-space: nowrap;
   }
-
   // 输入框
   :deep(
       .arco-input-wrapper:focus-within,
@@ -66,11 +61,20 @@
     border-color: transparent;
   }
 
+  :deep(.arco-input-wrapper) {
+    padding: 0;
+  }
+
+  :deep(.arco-table-td-content) {
+    font-size: 12px;
+  }
+
   :deep(.arco-input-wrapper, .arco-input-wrapper:hover) {
     background-color: initial;
   }
 
   :deep(.arco-input-wrapper .arco-input::placeholder) {
     color: #c9cdd4;
+    font-size: 12px;
   }
 </style>
