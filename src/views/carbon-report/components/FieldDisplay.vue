@@ -14,7 +14,7 @@
   const FIELD_CODE = {
     factor: 'FIELD_FACTOR',
     input: 'FIELD_INPUT',
-    calc: 'FIELD_CALCULATE_FORMULA',
+    calc: 'FIELD_CALCULATE_FORMULA'
   };
   const fieldCode = computed(
     () => dictStore.dictionaryMap[props.field.dictFieldType]?.code
@@ -31,9 +31,13 @@
   <EmissionTypeSelect v-if="!field.dictFieldType" />
   <template v-else-if="dictStore.dictionaryMap[field.dictFieldType]">
     <!--  输入框  -->
-    <a-input v-if="fieldCode === FIELD_CODE.input" placeholder="请输入" />
+    <a-input
+      v-if="fieldCode === FIELD_CODE.input"
+      placeholder="请输入"
+      :model-value="field.inputVal"
+    />
     <!--  因子  -->
-    <FactorInput v-else-if="fieldCode === FIELD_CODE.factor" />
+    <FactorInput v-else-if="fieldCode === FIELD_CODE.factor" :field="field" />
     <!-- 因子公式   -->
     <div v-else class="compute-wrapper">
       <span class="compute" @click="handleCompute">请计算因子</span>

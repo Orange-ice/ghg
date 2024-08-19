@@ -15,7 +15,15 @@
       size="small"
       class="w-200px"
       placeholder="请选择计算公式"
-    ></a-select>
+      :model-value="formula.checkedExp"
+    >
+      <a-option
+        v-for="exp in formula.expVoList"
+        :key="exp.id"
+        :label="exp.name"
+        :value="exp.id"
+      />
+    </a-select>
   </div>
 
   <a-table

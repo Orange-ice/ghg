@@ -1,6 +1,10 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
+  import { FieldValue } from '@/api/carbon-report/types';
 
+  defineProps<{
+    field: FieldValue;
+  }>();
   const visible = ref(false);
   const handleSwitch = () => {
     visible.value = true;
@@ -24,6 +28,7 @@
         <a-input
           placeholder="请输入因子名称搜索"
           class="w-300px mr-12px"
+          :model-value="field.inputVal"
         ></a-input>
         <a-select placeholder="请选择行业" class="w-160px"></a-select>
       </div>

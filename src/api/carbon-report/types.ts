@@ -32,6 +32,8 @@ export interface Formula {
   mainFlag: 1 | 0;
   fieldsVoList: Field[];
   valuesVoList: ValueVoItem[];
+  expVoList: FieldValue[];
+  checkedExp?: string;
 }
 
 // 模型数据
