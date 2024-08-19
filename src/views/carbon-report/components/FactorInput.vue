@@ -18,6 +18,7 @@
       title="选择因子数据"
       :width="960"
       :footer="false"
+      unmount-on-close
     >
       <div class="mb-24px">
         <a-input
