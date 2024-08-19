@@ -6,6 +6,7 @@ module.exports = {
   quoteProps: 'consistent',
   htmlWhitespaceSensitivity: 'strict',
   vueIndentScriptAndStyle: true,
+  trailingComma: 'none',
   endOfLine: 'auto'
-}
+};
 
