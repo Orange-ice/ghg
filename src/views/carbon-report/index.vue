@@ -2,6 +2,7 @@
   import { onMounted } from 'vue';
   import { useCDataStore } from '@/store';
   import TreeNode from '@/views/carbon-report/components/TreeNode.vue';
+  import GroupTree from '@/views/carbon-report/components/GroupTree.vue';
 
   const cdataStore = useCDataStore();
 
@@ -50,21 +51,7 @@
 
     <div class="content">
       <div class="aside">
-        <div class="group">
-          <iconpark-icon name="list-item" class="symbol" />
-          <span>范围一：燃料燃烧</span>
-          <iconpark-icon name="copy" class="copy" />
-        </div>
-        <div class="group">
-          <iconpark-icon name="list-item" class="symbol" />
-          <span>范围一：燃料燃烧</span>
-          <iconpark-icon name="copy" class="copy" />
-        </div>
-        <div class="group">
-          <iconpark-icon name="list-item" class="symbol" />
-          <span>范围一：燃料燃烧</span>
-          <iconpark-icon name="copy" class="copy" />
-        </div>
+        <GroupTree />
       </div>
       <div class="main">
         <TreeNode />
@@ -136,34 +123,6 @@
       .aside {
         width: 192px;
         margin-right: 24px;
-
-        .group {
-          display: flex;
-          align-items: center;
-
-          &:not(:last-child) {
-            margin-bottom: 12px;
-          }
-
-          > span {
-            font-size: 12px;
-            line-height: 18px;
-            flex: 1;
-            margin: 0 8px 0 4px;
-          }
-
-          .symbol {
-            font-size: 14px;
-            width: 14px;
-            height: 14px;
-          }
-
-          .copy {
-            width: 20px;
-            height: 20px;
-            font-size: 20px;
-          }
-        }
       }
 
       .main {
