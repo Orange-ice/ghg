@@ -1284,10 +1284,71 @@ const result = {
   ]
 };
 
+const groupResult = [
+  {
+    id: '1823257655512887296',
+    name: '工业过程和产品使用',
+    pid: null,
+    children: null,
+    sourceId: '1822908460854026240',
+    sourceFlag: 0,
+    copyFlag: 0,
+    frameGroupId: '1811341829598367744',
+    code: '1',
+    diyCalculateLv: null,
+    calculateLv: null,
+    diyScopeType: null,
+    scopeType: null,
+    diyEmissionType: null,
+    emissionType: null,
+    diyEmissionSource: null,
+    emissionSource: null,
+    diyGhgType: null,
+    ghgType: null,
+    useIndustry: '1813830468534800384',
+    industry: '1813830468534800384',
+    lv: null,
+    remarks: null,
+    emissionFgDataVoList: null,
+    emissionMVoList: null
+  },
+  {
+    id: '1823257655512887297',
+    name: '能源',
+    pid: null,
+    children: null,
+    sourceId: '1822908460854026241',
+    sourceFlag: 0,
+    copyFlag: 0,
+    frameGroupId: '1811341902247907328',
+    code: '2',
+    diyCalculateLv: null,
+    calculateLv: null,
+    diyScopeType: null,
+    scopeType: null,
+    diyEmissionType: null,
+    emissionType: null,
+    diyEmissionSource: null,
+    emissionSource: null,
+    diyGhgType: null,
+    ghgType: null,
+    useIndustry: '1813830468534800384',
+    industry: '1813830468534800384',
+    lv: null,
+    remarks: null,
+    emissionFgDataVoList: null,
+    emissionMVoList: null
+  }
+];
+
 setupMock({
   setup() {
     Mock.mock(new RegExp('/custom/emissionData/detailVo'), () => {
       return successResponseWrap(result);
+    });
+
+    Mock.mock(new RegExp('/custom/emissionFg/getFgList'), () => {
+      return successResponseWrap(groupResult);
     });
   },
 });

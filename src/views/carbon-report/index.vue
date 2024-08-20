@@ -6,6 +6,7 @@
   const cdataStore = useCDataStore();
 
   onMounted(() => {
+    cdataStore.queryGroupTree('1823257653503815680');
     cdataStore.queryDetail('1823257653503815680');
   });
 </script>

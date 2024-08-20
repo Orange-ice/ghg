@@ -58,10 +58,21 @@ interface Group {
   selectedModel?: string;
 }
 
+interface FrameGroup {
+  id: string;
+  name: string;
+  pid?: string;
+  children?: FrameGroup[];
+  copyFlag: 1 | 0;
+  lv?: number;
+}
+
 // 碳数据详情
 export interface CDataDetail {
   id: string;
   // 填报状态
   state: string;
   fgVoList: Group[];
+
+  groupTree: FrameGroup[];
 }

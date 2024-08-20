@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { CDataDetail, Model } from '@/api/carbon-report/types';
-import { getEmissionData } from '@/api/carbon-report';
+import { getEmissionData, getFrameGroups } from '@/api/carbon-report';
 
 const useCDataStore = defineStore('cdata', {
   state(): CDataDetail {
@@ -8,6 +8,7 @@ const useCDataStore = defineStore('cdata', {
       id: '',
       state: '',
       fgVoList: [],
+      groupTree: []
     };
   },
   actions: {
@@ -21,7 +22,7 @@ const useCDataStore = defineStore('cdata', {
      * */
     async queryDetail(id: string) {
       const res = await getEmissionData(id);
-      console.log(res.data);
+      console.log('CData:::', res.data);
       this.setInfo(res.data);
       this.resolveDetail();
     },
@@ -51,22 +52,30 @@ const useCDataStore = defineStore('cdata', {
           formula.fieldsVoList.splice(1, 0, {
             ...formula.fieldsVoList[0],
             dictFieldType: '',
-            name: '排放类型',
+            name: '排放类型'
           });
           formula.valuesVoList.forEach((val) => {
             val.values.splice(1, 0, {
               ...val.values[0],
-              dictFieldType: '',
+              dictFieldType: ''
             });
           });
         }
       });
 
-      console.log(modelId, formulaList);
 
       return formulaList;
     },
-  },
+
+    /**
+     * @description 获取框架分组树
+     * */
+    async queryGroupTree(id: string) {
+      const res = await getFrameGroups(id);
+      console.log('Frame Group Tree:::', res.data);
+      this.setInfo({ groupTree: res.data });
+    }
+  }
 });
 
 export default useCDataStore;
