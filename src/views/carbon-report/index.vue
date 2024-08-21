@@ -3,6 +3,7 @@
   import { useCDataStore } from '@/store';
   import TreeNode from '@/views/carbon-report/components/TreeNode.vue';
   import GroupTree from '@/views/carbon-report/components/GroupTree.vue';
+  import TotalFooter from '@/views/carbon-report/components/TotalFooter.vue';
 
   const cdataStore = useCDataStore();
 
@@ -57,6 +58,8 @@
         <TreeNode />
       </div>
     </div>
+
+    <TotalFooter />
   </div>
 </template>
 
@@ -129,7 +132,7 @@
         flex: 1;
         background: var(--color-white);
         padding: 26px 24px;
-        height: calc(100vh - 218px);
+        height: calc(100vh - 218px - 64px);
         overflow: auto;
       }
     }
