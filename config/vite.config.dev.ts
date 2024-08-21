@@ -3,7 +3,7 @@ import eslint from 'vite-plugin-eslint';
 import baseConfig from './vite.config.base';
 import { API_PREFIX } from '../src/api/prefix';
 
-const proxyUrl = 'https://saas-dev.ecdigit.cn/';
+const proxyUrl = 'https://saas-uat1.ecdigit.cn/';
 export default mergeConfig(
   {
     mode: 'development',
