@@ -12,9 +12,14 @@
 
   const dictStore = useDictStore();
   const FIELD_CODE = {
+    // 因子
     factor: 'FIELD_FACTOR',
+    //  输入框
     input: 'FIELD_INPUT',
-    calc: 'FIELD_CALCULATE_FORMULA'
+    // 计算公式
+    calc: 'FIELD_CALCULATE_FORMULA',
+    // 因子公式
+    factorFormula: 'FIELD_FACTOR_FORMULA'
   };
   const fieldCode = computed(
     () => dictStore.dictionaryMap[props.field.dictFieldType]?.code
@@ -39,14 +44,14 @@
     <!--  因子  -->
     <FactorInput v-else-if="fieldCode === FIELD_CODE.factor" :field="field" />
     <!-- 因子公式   -->
-    <div v-else class="compute-wrapper">
+    <div v-if="fieldCode === FIELD_CODE.factorFormula" class="compute-wrapper">
       <span class="compute" @click="handleCompute">请计算因子</span>
     </div>
   </template>
   <!-- 数据项 -->
   <template v-else>{{ field.name }}</template>
 
-  <FactorCompute v-model="computeVisible" />
+  <FactorCompute v-model="computeVisible" :field="field" />
 </template>
 
 <style lang="less" scoped>

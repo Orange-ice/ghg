@@ -2,18 +2,27 @@
   /**
    * @description 因子计算弹框 Component
    * */
+  import { FieldValue } from '@/api/carbon-report/types';
 
   const modelValue = defineModel<boolean>();
+  const props = defineProps<{
+    field: FieldValue;
+  }>();
+
+  const onOpen = () => {
+    // console.log(props.field);
+  };
 </script>
 
 <template>
   <a-drawer
     v-model:visible="modelValue"
-    title="xxx因子计算"
+    :title="`${field.name}因子计算`"
     :footer="false"
     :width="1072"
     :mask-closable="false"
     unmount-on-close
+    @open="onOpen"
   >
     <div class="bg-#EBF1FF py-7px px-16px flex items-center">
       <iconpark-icon name="attention" class="color-#1A58F4 text-12px" />
