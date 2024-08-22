@@ -11,4 +11,14 @@ declare module 'axios' {
      * */
     needToken?: boolean;
   }
+
+  export interface AxiosResponse {
+    code?: string;
+    message?: string;
+    page?: number;
+    size?: number;
+    total?: number;
+    totalPageNum?: number;
+    success?: boolean;
+  }
 }

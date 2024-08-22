@@ -8,6 +8,7 @@ interface Field {
 }
 
 export interface FieldValue extends Field {
+  factorTab?: string;
   factorVal?: string;
   inputVal?: string;
   optioned?: string;
@@ -75,4 +76,40 @@ export interface CDataDetail {
   fgVoList: Group[];
 
   groupTree: FrameGroup[];
+}
+
+/**
+ * @description 因子表查询接口的传参
+ * */
+export interface FactorQueryParams {
+  tabId: string;
+  dataName?: string;
+  industry?: string;
+  pageNum: number;
+  pageSize: number;
+}
+
+export interface FactorValItem {
+  id: string;
+  val: string;
+  headerId: string;
+}
+
+/**
+ * @description 因子表数据
+ * */
+export interface FactorVal {
+  valLine: string;
+  values: FactorValItem[];
+}
+
+
+/**
+ * @description 因子表表头
+ * */
+export interface FactorHead {
+  tabId: string;
+  dictColType: string;
+  id: string;
+  name: string;
 }
