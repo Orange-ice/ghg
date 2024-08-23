@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import CalcDetail from '@/views/carbon-report/components/CalcDetail.vue';
+  import { ref } from 'vue';
+
+  const calcVisible = ref(false);
+</script>
 
 <template>
   <div class="total-footer">
@@ -16,8 +21,15 @@
       <span class="unit">WMh</span>
     </div>
 
-    <a-button status="success" class="ml-auto mr-12px">详情预览</a-button>
+    <a-button
+      status="success"
+      class="ml-auto mr-12px"
+      @click="calcVisible = true"
+      >详情预览</a-button
+    >
     <a-button type="primary">数据核算</a-button>
+
+    <CalcDetail v-model="calcVisible" />
   </div>
 </template>
 
