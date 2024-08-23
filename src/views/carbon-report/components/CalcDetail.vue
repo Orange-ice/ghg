@@ -1,8 +1,9 @@
 <script setup lang="ts">
+  import ScopeChart from '@/views/carbon-report/components/ScopeChart.vue';
+
   /**
    * @description 核算的详情预览
    * */
-
   const visible = defineModel<boolean>();
 </script>
 
@@ -59,28 +60,31 @@
       >
         <div class="text-14px lh-20px">碳排放强度汇总（单位产量）</div>
         <div class="text-14px lh-20px color-#86909C">t/CO₂t</div>
+        <div class="text-14px lh-20px ml-auto">6.04</div>
       </div>
       <h2 class="section-title">范围碳排放量</h2>
       <div class="flex">
-        <div class="flex-1">
-          <div class="flex justify-between">
+        <div class="scope">
+          <div class="scope-item title">
             <div>排放范围</div>
             <div>碳排放量 tCO₂eq</div>
           </div>
-          <div>
+          <div class="scope-item child">
             <div>范围一</div>
             <div>123,456.78</div>
           </div>
-          <div>
+          <div class="scope-item child">
             <div>范围二</div>
             <div>123,456.78</div>
           </div>
-          <div>
+          <div class="scope-item child">
             <div>范围三</div>
             <div>123,456.78</div>
           </div>
         </div>
-        <div class="w-200px ml-64px mr-42px">circle</div>
+        <div class="w-200px ml-64px mr-42px">
+          <ScopeChart />
+        </div>
       </div>
       <h2 class="section-title">碳排放量明细</h2>
       <div>line</div>
@@ -135,6 +139,44 @@
       padding-top: 28px;
       margin-top: 28px;
       margin-bottom: 24px;
+    }
+
+    .scope {
+      flex-grow: 1;
+
+      &-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        line-height: 20px;
+
+        &.title {
+          background: #f7f8fa;
+          padding: 18px 16px;
+          border-top: solid 1px #e6e8eb;
+          border-bottom: solid 1px #e6e8eb;
+        }
+
+        &.child {
+          padding: 14px 16px;
+          border-bottom: solid 1px #e6e8eb;
+          position: relative;
+          margin-left: 14px;
+
+          &::before {
+            content: ' ';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #44bc80;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+          }
+        }
+      }
     }
   }
 </style>
