@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import ScopeChart from '@/views/carbon-report/components/ScopeChart.vue';
+  import DetailChart from '@/views/carbon-report/components/DetailChart.vue';
 
   /**
    * @description 核算的详情预览
@@ -87,7 +88,7 @@
         </div>
       </div>
       <h2 class="section-title">碳排放量明细</h2>
-      <div>line</div>
+      <DetailChart />
     </div>
   </a-drawer>
 </template>
