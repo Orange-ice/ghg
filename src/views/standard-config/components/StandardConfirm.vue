@@ -3,12 +3,23 @@
    * @description Component 确定核算标准弹框
    * */
   import { useRouter } from 'vue-router';
+  import { Standard } from '@/api/standard-config/types';
+  import { useStandardStore } from '@/store';
+
+  const standardStore = useStandardStore();
+
+  const props = defineProps<{
+    standard?: Standard;
+  }>();
 
   const modelValue = defineModel<boolean>();
 
   const router = useRouter();
 
   const submit = () => {
+    standardStore.setInfo({ currentStandard: props.standard?.id });
+    // TODO 这里需要判断 地方标准跳地区选择，其他跳行业选择
+
     router.push({ name: 'standardArea' });
   };
 </script>
@@ -25,7 +36,7 @@
     <p>
       以下为本次选择的核算标准，确认后该账号<span>不可再次修改及变更！</span>
     </p>
-    <div>IPCC-2019对《2006年国家温室气体清单编制指南》的完善</div>
+    <div>{{ standard?.name }}</div>
     <p>确认无误后，点击下方[确认]按钮完成核算标准选择</p>
   </a-modal>
 </template>

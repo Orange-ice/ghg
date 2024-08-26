@@ -1,23 +1,33 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
-  import { onMounted, ref } from 'vue';
+  import { ref } from 'vue';
   import StandardRemark from '@/views/standard-config/components/StandardRemark.vue';
   import StandardConfirm from '@/views/standard-config/components/StandardConfirm.vue';
   import { getAllStandards } from '@/api/standard-config';
+  import { Standard, StandardCategory } from '@/api/standard-config/types';
 
   const router = useRouter();
 
   // 所有可选标准
-  const standards = ref([]);
+  const standards = ref<StandardCategory[]>([]);
 
   // 查看备注（协助选择标准）
   const remarkVisible = ref(false);
 
   // 确定标准选择
   const confirmVisible = ref(false);
+  const currentStandard = ref<Standard>();
 
   const queryStandards = async () => {
     const res = await getAllStandards();
+    standards.value = res.data || [];
+    if (standards.value.length) {
+      standards.value.forEach((item) => {
+        if (item.children.length) {
+          item.expand = false;
+        }
+      });
+    }
   };
 
   const goBack = () => {
@@ -35,107 +45,12 @@
   };
 
   // 选择标准
-  const standardSelect = () => {
+  const standardSelect = (val: Standard) => {
+    currentStandard.value = val;
     confirmVisible.value = true;
   };
 
-  const data = ref<any[]>([]);
-  onMounted(() => {
-    // queryStandards();
-
-    data.value = [
-      {
-        type: '',
-        name: '中国碳核算标准或指南',
-        children: [
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-        ],
-      },
-      {
-        type: '',
-        name: '中国碳核算标准或指南',
-        children: [
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-        ],
-      },
-      {
-        type: '',
-        name: '中国碳核算标准或指南',
-        children: [
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-        ],
-      },
-      {
-        type: '',
-        name: '中国碳核算标准或指南',
-        children: [
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-          {
-            name: '中国碳核算标准',
-            desc: '这是一条对中国碳标准核算的描述填充文本这是一条对中国碳标准核算的描述填充文本',
-          },
-        ],
-      },
-    ];
-
-    data.value.forEach((item) => {
-      if (item.children.length) {
-        item.expand = false;
-      }
-    });
-  });
+  queryStandards();
 </script>
 
 <template>
@@ -147,14 +62,14 @@
 
     <div class="content">
       <div
-        v-for="(category, index) in data"
+        v-for="(category, index) in standards"
         :key="index"
         class="standard-wrapper"
       >
         <div
           class="category"
           :style="{
-            height: calcHeight(category.expand ? category.children.length : 3),
+            height: calcHeight(category.expand ? category.children.length : 3)
           }"
         >
           <iconpark-icon name="dot" class="symbol" />
@@ -175,7 +90,7 @@
         <div
           class="list"
           :style="{
-            height: calcHeight(category.expand ? category.children.length : 3),
+            height: calcHeight(category.expand ? category.children.length : 3)
           }"
         >
           <div
@@ -189,11 +104,11 @@
             <div>
               <h3 class="name">{{ standard.name }}</h3>
               <p class="desc">
-                {{ standard.desc }}
+                {{ standard.remarks }}
               </p>
 
               <div class="operation">
-                <div @click="standardSelect">
+                <div @click="standardSelect(standard)">
                   <span>使用此标准</span>
                   <iconpark-icon class="icon" name="standard-confirm" />
                 </div>
@@ -210,7 +125,7 @@
   </div>
 
   <StandardRemark v-model="remarkVisible" />
-  <StandardConfirm v-model="confirmVisible" />
+  <StandardConfirm v-model="confirmVisible" :standard="currentStandard" />
 </template>
 
 <style lang="less" scoped>
