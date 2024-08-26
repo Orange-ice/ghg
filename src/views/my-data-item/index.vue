@@ -28,6 +28,10 @@
   const query = reactive({
     name: ''
   });
+  const pager = reactive({
+    pageNum: 1,
+    pageSize: 10
+  });
   const total = ref(0);
   const tableData = ref<MyDataItem[]>([]);
   const { loading, setLoading } = useLoading(false);
@@ -35,11 +39,16 @@
 
   const queryDataItem = async () => {
     setLoading(true);
-    const res = await getDataItemPage({ ...query }).finally(() => {
+    const res = await getDataItemPage({ ...query, ...pager }).finally(() => {
       setLoading(false);
     });
     tableData.value = res.data || [];
     total.value = res.total || 0;
+  };
+
+  const search = () => {
+    pager.pageNum = 1;
+    queryDataItem();
   };
 
   const handleAdd = () => {
@@ -74,7 +83,14 @@
       </a-button>
     </div>
 
-    <a-input placeholder="请输入数据项名称搜索" class="w-300px mt-26px mb-16px">
+    <a-input
+      v-model="query.name"
+      placeholder="请输入数据项名称搜索"
+      class="w-300px mt-26px mb-16px"
+      allow-clear
+      @press-enter="search"
+      @clear="search"
+    >
       <template #suffix>
         <icon-search />
       </template>
@@ -106,7 +122,15 @@
       </a-table>
 
       <div class="flex justify-end mt-20px">
-        <a-pagination :total="total" show-jumper show-page-size></a-pagination>
+        <a-pagination
+          v-model:current="pager.pageNum"
+          v-model:page-size="pager.pageSize"
+          :total="total"
+          show-jumper
+          show-page-size
+          @change="queryDataItem"
+          @page-size-change="queryDataItem"
+        />
       </div>
     </div>
 
