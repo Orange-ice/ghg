@@ -56,10 +56,10 @@
     "@babel/types" "^7.12.12"
     "@types/node" "^16.11.10"
 
-"@arco-themes/vue-ecv3@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.npmmirror.com/@arco-themes/vue-ecv3/-/vue-ecv3-0.0.6.tgz#52c6234a56ad7f443d4ed715bfa732647a24bbfc"
-  integrity sha512-nRsk4+Av3sMU8ugAXgPwKTThOJMtEzOqzkCm5nqYTFZXXzZ7Dq5JbNwyuDfC2pFujKUoosmYDeulKoenthSeNw==
+"@arco-themes/vue-ecv3@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmmirror.com/@arco-themes/vue-ecv3/-/vue-ecv3-0.0.7.tgz#3878a36de33fdc0fb64493779dc6e9081f023a70"
+  integrity sha512-SmrITuJ4Cyjaqveh3T/qgMBzwirsjIkRzCZjHI2cIjKqr1PKqt22nwqQg9SjO6kXTC86eg1UFwXC0DrRd3Tvow==
 
 "@babel/code-frame@^7.23.5", "@babel/code-frame@^7.24.7":
   version "7.24.7"

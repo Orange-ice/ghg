@@ -35,3 +35,6 @@ export interface GeneralChart {
   xAxis: string[];
   data: Array<{ name: string; value: number[] }>;
 }
+
+
+export type ClosedFunc = (closed: boolean) => void;
