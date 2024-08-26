@@ -8,6 +8,10 @@
 
 <template>
   <BaseLayout title="请选择您的行业/指南" back-route="standardArea">
-    <ListBlock @click-item="$router.push({ name: 'standardCycle' })" />
+    <ListBlock
+      type="industry"
+      :list="[]"
+      @click-item="$router.push({ name: 'standardCycle' })"
+    />
   </BaseLayout>
 </template>

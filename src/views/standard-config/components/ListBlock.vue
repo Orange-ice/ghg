@@ -1,55 +1,26 @@
 <script lang="ts" setup>
   defineEmits(['clickItem']);
+  defineProps<{
+    list: { id: string; name: string }[];
+    type: 'area' | 'industry';
+  }>();
 </script>
 
 <template>
   <div class="list">
-    <div class="list-item" @click="$emit('clickItem')">
-      <span>北京</span>
+    <div
+      v-for="item in list"
+      :key="item.id"
+      class="list-item"
+      @click="$emit('clickItem')"
+    >
+      <span>{{ item.name }}</span>
       <iconpark-icon name="beijing" class="icon" />
       <div class="operation">
-        <span>选择地区</span>
+        <span>选择{{ type === 'area' ? '地区' : '行业' }}</span>
         <iconpark-icon name="arrow-right" class="icon" />
       </div>
     </div>
-    <!--        -->
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <div class="list-item">
-      <span>北京</span>
-      <iconpark-icon name="beijing" class="icon" />
-    </div>
-    <!--        -->
   </div>
 </template>
 

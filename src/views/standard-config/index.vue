@@ -45,8 +45,11 @@
   };
 
   // 选择标准
-  const standardSelect = (val: Standard) => {
-    currentStandard.value = val;
+  const standardSelect = (val: Standard, diyStandard: string) => {
+    currentStandard.value = {
+      ...val,
+      diyStandard
+    };
     confirmVisible.value = true;
   };
 
@@ -104,11 +107,11 @@
             <div>
               <h3 class="name">{{ standard.name }}</h3>
               <p class="desc">
-                {{ standard.remarks }}
+                {{ standard.blurb }}
               </p>
 
               <div class="operation">
-                <div @click="standardSelect(standard)">
+                <div @click="standardSelect(standard, category.id)">
                   <span>使用此标准</span>
                   <iconpark-icon class="icon" name="standard-confirm" />
                 </div>

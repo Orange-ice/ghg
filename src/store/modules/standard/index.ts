@@ -1,13 +1,17 @@
 import { defineStore } from 'pinia';
 
 interface StandardState {
-  currentStandard: string;
+  diyStandard?: string;
+  diySubcategory?: string;
+  diyArea?: string;
 }
 
 const useStandardStore = defineStore('standard', {
-  state() {
+  state(): StandardState {
     return {
-      currentStandard: ''
+      diyStandard: '',
+      diySubcategory: '',
+      diyArea: ''
     };
   },
   actions: {

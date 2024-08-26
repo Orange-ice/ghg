@@ -17,7 +17,10 @@
   const router = useRouter();
 
   const submit = () => {
-    standardStore.setInfo({ currentStandard: props.standard?.id });
+    standardStore.setInfo({
+      diyStandard: props.standard?.diyStandard,
+      diySubcategory: props.standard?.id
+    });
     // TODO 这里需要判断 地方标准跳地区选择，其他跳行业选择
 
     router.push({ name: 'standardArea' });

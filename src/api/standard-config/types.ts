@@ -4,6 +4,9 @@ export interface Standard {
   packetFlag: 1 | 0;
   remarks?: string;
   pid: string;
+  diyStandard: string;
+  diySubcategory: string;
+  blurb: string;
 }
 
 export interface StandardCategory {
@@ -13,4 +16,10 @@ export interface StandardCategory {
   remarks: string;
 
   expand?: boolean;
+}
+
+export interface AreaItem {
+  diyArea: string;
+  name: string;
+  id: string;
 }
