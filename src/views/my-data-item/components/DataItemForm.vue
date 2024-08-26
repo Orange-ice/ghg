@@ -32,6 +32,15 @@
     Object.assign(formModel, generateDefault());
   };
 
+  const onOpen = () => {
+    if (props.record) {
+      const { name, id, remark } = props.record;
+      formModel.name = name;
+      formModel.remark = remark;
+      formModel.id = id;
+    }
+  };
+
   const submit = async (done: ClosedFunc) => {
     const err = await formRef.value?.validate();
     if (err) {
@@ -53,6 +62,7 @@
     :title="`${formType === 'add' ? '新增' : '编辑'}数据项`"
     :width="440"
     :on-before-ok="submit"
+    @open="onOpen"
     @close="onClose"
   >
     <a-form

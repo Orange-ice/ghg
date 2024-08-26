@@ -26,6 +26,7 @@
   const total = ref(0);
   const tableData = ref<MyDataItem[]>([]);
   const { loading, setLoading } = useLoading(false);
+  const currentRecord = ref<MyDataItem>();
 
   const queryDataItem = async () => {
     setLoading(true);
@@ -36,8 +37,13 @@
     total.value = res.total || 0;
   };
 
-  const handleEdit = () => {
-    console.log('edit');
+  const handleAdd = () => {
+    currentRecord.value = undefined;
+    formVisible.value = true;
+  };
+  const handleEdit = (record: MyDataItem) => {
+    currentRecord.value = record;
+    formVisible.value = true;
   };
 
   queryDataItem();
@@ -47,7 +53,7 @@
   <div class="my-data-item px-24px py-26px">
     <div class="flex items-center">
       <span class="text-16px lh-32px fw-600 mr-auto">我的数据项</span>
-      <a-button type="primary" @click="formVisible = true">
+      <a-button type="primary" @click="handleAdd">
         <template #icon>
           <icon-plus />
         </template>
@@ -74,8 +80,8 @@
           <span class="color-#86909C">{{ record.remark }}</span>
         </template>
 
-        <template #operation>
-          <TextButton text="编辑" class="mr-16px" @click="handleEdit" />
+        <template #operation="{ record }">
+          <TextButton text="编辑" class="mr-16px" @click="handleEdit(record)" />
           <TextButton text="删除" />
         </template>
       </a-table>
@@ -85,6 +91,10 @@
       </div>
     </div>
 
-    <DataItemForm v-model="formVisible" @finish="queryDataItem" />
+    <DataItemForm
+      v-model="formVisible"
+      :record="currentRecord"
+      @finish="queryDataItem"
+    />
   </div>
 </template>
