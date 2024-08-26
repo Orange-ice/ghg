@@ -2,9 +2,14 @@
   import { TableColumnData } from '@arco-design/web-vue';
   import { reactive, ref } from 'vue';
   import DataItemForm from '@/views/my-data-item/components/DataItemForm.vue';
-  import { getDataItemPage, MyDataItem } from '@/api/myDataItem';
+  import {
+    getDataItemPage,
+    MyDataItem,
+    removeDateItem
+  } from '@/api/myDataItem';
   import useLoading from '@/hooks/loading';
   import TextButton from '@/components/TextButton.vue';
+  import { ClosedFunc } from '@/types/global';
 
   const columns: TableColumnData[] = [
     { title: '数据项名称', dataIndex: 'name' },
@@ -45,6 +50,14 @@
     currentRecord.value = record;
     formVisible.value = true;
   };
+  const handleDelete = async (done: ClosedFunc, record: MyDataItem) => {
+    await removeDateItem(record.id).catch((e) => {
+      done(false);
+      throw new Error(e);
+    });
+    done(true);
+    queryDataItem();
+  };
 
   queryDataItem();
 </script>
@@ -82,7 +95,13 @@
 
         <template #operation="{ record }">
           <TextButton text="编辑" class="mr-16px" @click="handleEdit(record)" />
-          <TextButton text="删除" />
+          <a-popconfirm
+            content="确定要删除吗？"
+            type="warning"
+            :on-before-ok="(done) => handleDelete(done, record)"
+          >
+            <TextButton text="删除" />
+          </a-popconfirm>
         </template>
       </a-table>
 
