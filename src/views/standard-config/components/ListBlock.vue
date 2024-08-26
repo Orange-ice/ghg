@@ -12,7 +12,7 @@
       v-for="item in list"
       :key="item.id"
       class="list-item"
-      @click="$emit('clickItem')"
+      @click="$emit('clickItem', item)"
     >
       <span>{{ item.name }}</span>
       <iconpark-icon name="beijing" class="icon" />

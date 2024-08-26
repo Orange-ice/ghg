@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getDict } from '@/api/common';
+import { getCustomDict, getDict } from '@/api/common';
 import { DictItem } from '@/api/common/types';
 
 type DictKeys =
@@ -36,9 +36,22 @@ const useDictStore = defineStore('dict', {
       }, {} as DictKeyObj);
     },
     async queryDict() {
+      const customRes = await getCustomDict();
+
       const res = await getDict();
-      const keyObj = this.analyzeDictKeyObj(res.data.dictionaryList);
-      this.setDictInfo({ dictionaryMap: res.data.dictionaryMap, ...keyObj });
+      const keyObj = this.analyzeDictKeyObj(
+        res.data.dictionaryList.concat(customRes.data)
+      );
+      const dictMap = customRes.data.reduce((acc, item) => {
+        if (item.children && Array.isArray(item.children)) {
+          item.children.forEach((i) => {
+            acc[i.id] = i;
+          });
+        }
+        return acc;
+      }, res.data.dictionaryMap || {});
+
+      this.setDictInfo({ dictionaryMap: dictMap, ...keyObj });
     },
   },
 });

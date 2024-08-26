@@ -3,10 +3,25 @@
    * @description @Component 选择地区/行业/周期的页面相似，公用布局组件
    * */
 
+  import { useDictStore, useStandardStore } from '@/store';
+  import { computed } from 'vue';
+
   defineProps<{
     backRoute: string;
     title: string;
   }>();
+
+  const standardStore = useStandardStore();
+  const dictStore = useDictStore();
+
+  const standardName = computed(() => {
+    if (!standardStore.diyStandard) return '';
+    return dictStore.dictionaryMap[standardStore.diyStandard]?.name;
+  });
+  const categoryName = computed(() => {
+    if (!standardStore.diySubcategory) return '';
+    return dictStore.dictionaryMap[standardStore.diySubcategory]?.name;
+  });
 </script>
 
 <template>
@@ -24,8 +39,8 @@
       <div class="title">
         <iconpark-icon name="guide" class="icon" />
         <span>核算标准</span>
-        <span class="name">中国碳核算标准或指南</span>
-        <span class="type">地方碳核算指南</span>
+        <span class="name">{{ standardName }}</span>
+        <span class="type">{{ categoryName }}</span>
         <!--        <a-select-->
         <!--          style="margin-left: auto; width: 128px"-->
         <!--          size="small"-->

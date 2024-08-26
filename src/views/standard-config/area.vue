@@ -32,7 +32,8 @@
     }
   };
 
-  const confirm = () => {
+  const confirm = (val: AreaItem) => {
+    standardStore.setInfo({ diyArea: val.diyArea });
     router.push({ name: 'standardIndustry' });
   };
 

@@ -9,7 +9,16 @@ export function getAllStandards() {
 // 查询地区列表
 export function getAreaList(data: {
   diyStandard: string;
-  diySubcategory: string;
+  diySubcategory?: string;
 }) {
   return axios.post<AreaItem[]>('/packet/getAreaList', data);
+}
+
+// 查询行业列表
+export function getIndustryList(data: {
+  diyStandard: string;
+  diySubcategory?: string;
+  diyArea?: string;
+}) {
+  return axios.post('/packet/getHaveIndustryList', data);
 }
