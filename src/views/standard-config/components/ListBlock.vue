@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="list">
+  <div v-if="list.length" class="list">
     <div
       v-for="item in list"
       :key="item.id"
@@ -20,6 +20,26 @@
         <span>选择{{ type === 'area' ? '地区' : '行业' }}</span>
         <iconpark-icon name="arrow-right" class="icon" />
       </div>
+    </div>
+  </div>
+  <div
+    v-if="!list.length && type === 'industry'"
+    class="h-500px flex flex-col items-center justify-center"
+  >
+    <iconpark-icon name="location" class="text-64px w-61px h-64px mb-8px" />
+    <div class="text-12px lh-20px color-#86909C text-center">
+      该地区暂无行业可选<br />
+      推荐使用「中国碳核算指南」下的行业继续
+    </div>
+    <div class="mt-32px">
+      <a-button
+        type="outline"
+        class="mr-12px"
+        @click="$router.push({ name: 'standardArea' })"
+      >
+        返回重选
+      </a-button>
+      <a-button type="primary">立即前往</a-button>
     </div>
   </div>
 </template>
