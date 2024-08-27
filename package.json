@@ -23,6 +23,7 @@
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "query-string": "^8.0.3",
     "sortablejs": "^1.15.0",
     "the-new-css-reset": "1.11.2",

@@ -7,6 +7,11 @@ export interface Standard {
   diyStandard: string;
   diySubcategory: string;
   blurb: string;
+  cycleType: string;
+  diyArea: string;
+  industryStr: string;
+  industryId: string;
+  industryImg: string;
 }
 
 export interface StandardCategory {

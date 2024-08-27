@@ -1,8 +1,33 @@
 <script setup lang="ts">
+  import { useDictStore, useStandardStore } from '@/store';
+  import { ClosedFunc } from '@/types/global';
+  import { useRouter } from 'vue-router';
+  import { addStandard } from '@/api/standard-config';
+
   /**
    * @description Component 标准创建确认
    * */
   const modelValue = defineModel<boolean>();
+
+  const props = defineProps<{
+    selectedCycle: { id: string; name: string };
+  }>();
+
+  const router = useRouter();
+  const standardStore = useStandardStore();
+  const dictStore = useDictStore();
+
+  const submit = async (done: ClosedFunc) => {
+    const submitData = {
+      useCycle: props.selectedCycle.id,
+      sourceId: standardStore.sourceId || ''
+    };
+    // console.log('submit Data:::', submitData);
+    done(false);
+    await addStandard(submitData);
+    done(true);
+    router.push({ name: 'carbonDashboard' });
+  };
 </script>
 
 <template>
@@ -12,7 +37,7 @@
     title-align="start"
     width="704px"
     :cancel-button-props="{ type: 'outline' }"
-    @ok="$router.push({ name: 'carbonDashboard' })"
+    :on-before-ok="(done) => submit(done)"
   >
     <div class="container">
       <div class="tip">
@@ -26,14 +51,27 @@
 
       <span class="title-text">核算标准</span>
       <div class="standard">
-        <span>中国碳核算标准或指南</span>
-        <span>地方碳核算指南</span>
+        <span>
+          {{ dictStore.dictionaryMap[standardStore.diyStandard || '']?.name }}
+        </span>
+        <span>
+          {{
+            dictStore.dictionaryMap[standardStore.diySubcategory || '']?.name
+          }}
+        </span>
       </div>
       <div class="cycle">
         <span class="title-text">所选行业/地区</span>
         <span class="title-text">填报周期</span>
-        <div> 采矿业（上海）</div>
-        <div>季度填报</div>
+        <div>
+          {{ standardStore.industryStr }}
+          {{
+            standardStore.diyArea
+              ? `（${dictStore.dictionaryMap[standardStore.diyArea]?.name}）`
+              : ''
+          }}
+        </div>
+        <div>{{ selectedCycle.name }}</div>
       </div>
     </div>
   </a-modal>

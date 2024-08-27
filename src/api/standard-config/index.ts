@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { AreaItem, StandardCategory } from '@/api/standard-config/types';
+import {
+  AreaItem,
+  Standard,
+  StandardCategory
+} from '@/api/standard-config/types';
 
 // 查询标准选择的数据
 export function getAllStandards() {
@@ -20,5 +24,10 @@ export function getIndustryList(data: {
   diySubcategory?: string;
   diyArea?: string;
 }) {
-  return axios.post('/packet/getHaveIndustryList', data);
+  return axios.post<Standard[]>('/packet/getHaveIndustryList', data);
+}
+
+// 公式添加标准
+export function addStandard(data: { sourceId: string; useCycle: string }) {
+  return axios.post('/custom/packet/copy', data);
 }

@@ -6,7 +6,9 @@ type DictKeys =
   // 排放类型
   | 'EMISSION_CATEGORIES'
   // 公式字段类型
-  | 'FORMULA_FIELD_CATEGORY';
+  | 'FORMULA_FIELD_CATEGORY'
+  // 填报周期
+  | 'GHG_DATE_TIME_USE';
 
 type DictKeyObj = {
   [key in DictKeys]?: DictItem[];
@@ -22,6 +24,7 @@ const useDictStore = defineStore('dict', {
       dictionaryMap: {},
       FORMULA_FIELD_CATEGORY: [],
       EMISSION_CATEGORIES: [],
+      GHG_DATE_TIME_USE: []
     };
   },
   actions: {

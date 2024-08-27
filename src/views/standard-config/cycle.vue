@@ -1,53 +1,84 @@
 <script lang="ts" setup>
   import BaseLayout from '@/views/standard-config/components/BaseLayout.vue';
   import FinallyConfirm from '@/views/standard-config/components/FinallyConfirm.vue';
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
+  import { useDictStore, useStandardStore } from '@/store';
+  import { Message } from '@arco-design/web-vue';
 
+  const standardStore = useStandardStore();
+  const dictStore = useDictStore();
   const confirmVisible = ref(false);
+  const selectCycle = ref('');
+
+  const cycleTypeList = computed(() => {
+    return standardStore.cycleType?.split(',');
+  });
+
+  const handleSelect = (val: string) => {
+    selectCycle.value = val;
+  };
+
+  const confirm = () => {
+    if (!selectCycle.value) {
+      Message.warning('请选择填报周期');
+      return;
+    }
+    confirmVisible.value = true;
+  };
 </script>
 
 <template>
   <BaseLayout title="请选择填报周期" back-route="standardIndustry">
     <span class="title-text">所选行业</span>
     <div class="industry">
-      <span>采矿业（上海）</span>
-      <span>重新选择</span>
+      <span>
+        {{ standardStore.industryStr }}
+        {{
+          standardStore.diyArea
+            ? `（${dictStore.dictionaryMap[standardStore.diyArea]?.name}）`
+            : ''
+        }}
+      </span>
+      <span @click="$router.push({ name: 'standardIndustry' })">重新选择</span>
     </div>
 
     <div class="cycle">
       <span class="title-text">填报周期</span>
       <div class="cycle-wrapper">
-        <div class="cycle-item">
-          <span>年度填报</span>
-          <p>以年度为单位进行碳数据填报</p>
-        </div>
-        <div class="cycle-item">
-          <span>年度填报</span>
-          <p>以年度为单位进行碳数据填报</p>
-        </div>
-        <div class="cycle-item">
-          <span>年度填报</span>
-          <p>以年度为单位进行碳数据填报</p>
+        <div
+          v-for="item in cycleTypeList"
+          :key="item"
+          :class="{ 'cycle-item': true, 'selected': item === selectCycle }"
+          @click="handleSelect(item)"
+        >
+          <span>{{ dictStore.dictionaryMap[item]?.name }}</span>
+          <p>以{{ dictStore.dictionaryMap[item]?.name }}为单位进行碳数据填报</p>
         </div>
       </div>
     </div>
 
-    <div class="tip">
+    <div v-if="selectCycle" class="tip">
       <iconpark-icon name="attention" class="icon" />
       <span>
-        您当前选择的是「XX填报」，请再次确认是否选用此填报周期，一旦选择则无法修改。
+        您当前选择的是「{{
+          dictStore.dictionaryMap[selectCycle]?.name
+        }}填报」，请再次确认是否选用此填报周期，一旦选择则无法修改。
       </span>
     </div>
 
     <div class="operation">
       <a-button class="mr-12px" type="outline">返回重选</a-button>
-      <a-button type="primary" @click="confirmVisible = true">
-        开始使用
-      </a-button>
+      <a-button type="primary" @click="confirm"> 开始使用</a-button>
     </div>
   </BaseLayout>
 
-  <FinallyConfirm v-model="confirmVisible" />
+  <FinallyConfirm
+    v-model="confirmVisible"
+    :selected-cycle="{
+      id: selectCycle,
+      name: dictStore.dictionaryMap[selectCycle]?.name
+    }"
+  />
 </template>
 
 <style lang="less" scoped>
@@ -91,6 +122,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 18px;
+      grid-row-gap: 18px;
 
       .cycle-item {
         cursor: pointer;
@@ -111,6 +143,10 @@
           font-size: 14px;
           color: #86909c;
           line-height: 24px;
+        }
+
+        &.selected {
+          border-color: #008f50;
         }
 
         &:hover {
