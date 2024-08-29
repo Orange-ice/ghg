@@ -4,11 +4,13 @@
   import { computed, ref } from 'vue';
   import { useDictStore, useStandardStore } from '@/store';
   import { Message } from '@arco-design/web-vue';
+  import { useRouter } from 'vue-router';
 
   const standardStore = useStandardStore();
   const dictStore = useDictStore();
   const confirmVisible = ref(false);
   const selectCycle = ref('');
+  const router = useRouter();
 
   const cycleTypeList = computed(() => {
     return standardStore.cycleType?.split(',');
@@ -25,22 +27,36 @@
     }
     confirmVisible.value = true;
   };
+
+  // 返回重选
+  const back = () => {
+    console.log();
+    if (standardStore.packetFlag === 1) {
+      router.push({ name: 'standardConfig' });
+    }
+
+    //
+  };
 </script>
 
 <template>
   <BaseLayout title="请选择填报周期" back-route="standardIndustry">
-    <span class="title-text">所选行业</span>
-    <div class="industry">
-      <span>
-        {{ standardStore.industryStr }}
-        {{
-          standardStore.diyArea
-            ? `（${dictStore.dictionaryMap[standardStore.diyArea]?.name}）`
-            : ''
-        }}
-      </span>
-      <span @click="$router.push({ name: 'standardIndustry' })">重新选择</span>
-    </div>
+    <template v-if="!standardStore.packetFlag">
+      <span class="title-text">所选行业</span>
+      <div class="industry">
+        <span>
+          {{ standardStore.industryStr }}
+          {{
+            standardStore.diyArea
+              ? `（${dictStore.dictionaryMap[standardStore.diyArea]?.name}）`
+              : ''
+          }}
+        </span>
+        <span @click="$router.push({ name: 'standardIndustry' })"
+          >重新选择</span
+        >
+      </div>
+    </template>
 
     <div class="cycle">
       <span class="title-text">填报周期</span>
@@ -67,7 +83,7 @@
     </div>
 
     <div class="operation">
-      <a-button class="mr-12px" type="outline">返回重选</a-button>
+      <a-button class="mr-12px" type="outline" @click="back">返回重选</a-button>
       <a-button type="primary" @click="confirm"> 开始使用</a-button>
     </div>
   </BaseLayout>

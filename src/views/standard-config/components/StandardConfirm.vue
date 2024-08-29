@@ -17,11 +17,35 @@
   const router = useRouter();
 
   const submit = () => {
+    // 如果 packetFlag 为 1，直接跳转到周期选择页面
+    if (props.standard?.packetFlag === 1) {
+      const {
+        diyStandard,
+        diySubcategory,
+        diyArea,
+        industryStr,
+        industryId,
+        id,
+        packetFlag
+      } = props.standard;
+      standardStore.setInfo({
+        diyStandard,
+        diySubcategory,
+        diyArea,
+        industryStr,
+        industryId,
+        sourceId: id,
+        packetFlag
+      });
+      router.push({ name: 'standardCycle' });
+      return;
+    }
+
+    // TODO 这里需要判断 地方标准跳地区选择，其他跳行业选择
     standardStore.setInfo({
       diyStandard: props.standard?.diyStandard,
       diySubcategory: props.standard?.id
     });
-    // TODO 这里需要判断 地方标准跳地区选择，其他跳行业选择
 
     router.push({ name: 'standardArea' });
   };

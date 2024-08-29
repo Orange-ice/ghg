@@ -9,6 +9,8 @@ interface StandardState {
   cycleType?: string;
   // 标准id
   sourceId?: string;
+  // 该标识仅用于判断标准选择页面（standardConfig）选择的是否是标准
+  packetFlag?: 1 | 0;
 }
 
 const useStandardStore = defineStore('standard', {
@@ -20,7 +22,8 @@ const useStandardStore = defineStore('standard', {
       industryStr: '',
       industryId: '',
       cycleType: '',
-      sourceId: ''
+      sourceId: '',
+      packetFlag: 0
     };
   },
   actions: {
