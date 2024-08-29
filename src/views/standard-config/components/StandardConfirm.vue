@@ -4,9 +4,11 @@
    * */
   import { useRouter } from 'vue-router';
   import { Standard } from '@/api/standard-config/types';
-  import { useStandardStore } from '@/store';
+  import { useDictStore, useStandardStore } from '@/store';
+  import { DICE_CODE } from '@/config/dictCode';
 
   const standardStore = useStandardStore();
+  const dictStore = useDictStore();
 
   const props = defineProps<{
     standard?: Standard;
@@ -40,14 +42,20 @@
       router.push({ name: 'standardCycle' });
       return;
     }
-
-    // TODO 这里需要判断 地方标准跳地区选择，其他跳行业选择
+    
     standardStore.setInfo({
       diyStandard: props.standard?.diyStandard,
       diySubcategory: props.standard?.id
     });
-
-    router.push({ name: 'standardArea' });
+    // 地方标准
+    if (
+      dictStore.dictionaryMap[props.standard?.id || '']?.code === DICE_CODE.DFZN
+    ) {
+      router.push({ name: 'standardArea' });
+      return;
+    }
+    // 其他标准跳行业选择
+    router.push({ name: 'standardIndustry' });
   };
 </script>
 
