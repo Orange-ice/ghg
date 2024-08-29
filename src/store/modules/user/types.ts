@@ -26,4 +26,6 @@ export interface UserState {
     id: string;
     name: string;
   };
+
+  initFlag: boolean;
 }

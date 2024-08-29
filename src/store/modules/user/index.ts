@@ -32,12 +32,13 @@ const useUserStore = defineStore('user', {
     username: undefined,
     industry: undefined,
     company: undefined,
+    initFlag: false
   }),
 
   getters: {
     userInfo(state: UserState): UserState {
       return { ...state };
-    },
+    }
   },
 
   actions: {
@@ -88,8 +89,12 @@ const useUserStore = defineStore('user', {
       } finally {
         this.logoutCallBack();
       }
-    },
+    }
   },
+  persist: {
+    storage: window.sessionStorage,
+    paths: ['initFlag']
+  }
 });
 
 export default useUserStore;

@@ -3,6 +3,7 @@ import NProgress from 'nprogress'; // progress bar
 
 import { useUserStore, useDictStore } from '@/store';
 import { isLogin } from '@/utils/auth';
+import { ghgInit } from '@/api/common';
 
 export default function setupUserLoginInfoGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
@@ -14,7 +15,11 @@ export default function setupUserLoginInfoGuard(router: Router) {
       } else {
         try {
           await userStore.info();
-
+          if (!userStore.initFlag) {
+            ghgInit().then(() => {
+              userStore.setInfo({ initFlag: true });
+            });
+          }
           const dictStore = useDictStore();
           if (!Object.keys(dictStore.dictionaryMap).length) {
             await dictStore.queryDict();

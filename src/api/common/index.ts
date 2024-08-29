@@ -10,3 +10,8 @@ export function getDict() {
 export function getCustomDict(data = ['SYS_SUBCATEGORY', 'STANDARD_CATEGORY']) {
   return axios.post<DictItem[]>('/customDictionary/getVoList', data);
 }
+
+// 首次进入init
+export function ghgInit() {
+  return axios.post('/custom/base/initBase', {});
+}
