@@ -1,7 +1,8 @@
 <template>
   <a-layout class="layout" :class="{ mobile: appStore.hideMenu }">
     <div v-if="navbar" class="layout-navbar">
-      <NavBar />
+<!--      <NavBar />-->
+      <ECNavbar />
     </div>
     <a-layout>
       <a-layout>
@@ -13,7 +14,7 @@
           :collapsed="collapsed"
           :collapsible="true"
           :width="menuWidth"
-          :style="{ paddingTop: navbar ? '60px' : '' }"
+          :style="{ paddingTop: navbar ? '56px' : '' }"
           :hide-trigger="true"
           @collapse="setCollapsed"
         >
@@ -48,12 +49,13 @@
   import { ref, computed, watch, provide, onMounted } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { useAppStore, useUserStore } from '@/store';
-  import NavBar from '@/components/navbar/index.vue';
+  // import NavBar from '@/components/navbar/index.vue';
   import Menu from '@/components/menu/index.vue';
   import Footer from '@/components/footer/index.vue';
   import TabBar from '@/components/tab-bar/index.vue';
   import usePermission from '@/hooks/permission';
   import useResponsive from '@/hooks/responsive';
+  import ECNavbar from '@/components/ec-navbar/index.vue'
   import PageLayout from './page-layout.vue';
 
   const isInit = ref(false);
@@ -63,7 +65,7 @@
   const route = useRoute();
   const permission = usePermission();
   useResponsive(true);
-  const navbarHeight = `60px`;
+  const navbarHeight = `56px`;
   const navbar = computed(() => appStore.navbar);
   const renderMenu = computed(() => appStore.menu && !appStore.topMenu);
   const hideMenu = computed(() => appStore.hideMenu);
@@ -106,7 +108,8 @@
 </script>
 
 <style scoped lang="less">
-  @nav-size-height: 60px;
+  //@nav-size-height: 60px;
+  @nav-size-height: 56px;
   @layout-max-width: 1100px;
 
   .layout {

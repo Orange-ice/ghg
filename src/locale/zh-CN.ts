@@ -27,6 +27,23 @@ export default {
   'menu.carbonDataManage': '数据管理',
   'menu.myDataItem': '我的数据项',
 
+  // navbar app menu ==========
+  'navbar.app.jimu': '积木碳云',
+  'navbar.app.jimuTips': '全生命周期企业温室气体核算',
+  'navbar.app.lca': '积木LCA云',
+  'navbar.app.lcaTips': '产品全生命周期温室气体核算',
+  'navbar.app.view': '碳全景',
+  'navbar.app.viewTips': '直观清晰掌控企业碳排放实时动态',
+  'navbar.app.business': '碳交易',
+  'navbar.app.businessTips': '为企业碳资产提供交易撮合服务',
+  'navbar.app.report': '碳报告',
+  'navbar.app.reportTips': '符合国家标准的企业碳资产管理报告',
+  'navbar.app.supplier': '供应链',
+  'navbar.app.supplierTips': '实现企业上下游供应商高效协同、敏捷供应',
+  'navbar.app.headquarters': '总部管理',
+  'navbar.app.headquartersTips': '为企业一总部多基地架构量身定制的碳管理模式',
+  // ===================
+
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,

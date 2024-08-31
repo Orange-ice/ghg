@@ -26,6 +26,26 @@ export default {
   'menu.standardDisplay': '标准管理',
   'menu.carbonDataManage': '数据管理',
   'menu.myDataItem': '我的数据项',
+
+  'navbar.app.jimu': 'Building JIMU Carbon Cloud',
+  'navbar.app.jimuTips': 'Full life cycle enterprise greenhouse gas accounting',
+  'navbar.app.lca': 'Building JIMU LCA Cloud',
+  'navbar.app.lcaTips': 'Product life cycle greenhouse gas accounting',
+  'navbar.app.view': 'Carbon panorama',
+  'navbar.app.viewTips':
+    'Intuitively and clearly control the real-time dynamics of corporate carbon emissions',
+  'navbar.app.business': 'Carbon trading',
+  'navbar.app.businessTips':
+    'Provide transaction matching services for corporate carbon assets',
+  'navbar.app.report': 'Carbon report',
+  'navbar.app.reportTips':
+    'Corporate carbon asset management report that meets national standards',
+  'navbar.app.supplier': 'Supply chain',
+  'navbar.app.supplierTips':
+    'Achieve efficient collaboration and agile supply between upstream and downstream suppliers of the enterprise',
+  'navbar.app.headquarters': 'Headquarters management',
+  'navbar.app.headquartersTips':
+    "Carbon management model tailored for an enterprise's one-headquarters, multi-base structure",
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,

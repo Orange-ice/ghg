@@ -14,7 +14,7 @@ export default function setupUserLoginInfoGuard(router: Router) {
         next();
       } else {
         try {
-          await userStore.info();
+          await userStore.initInfo();
           if (!userStore.initFlag) {
             ghgInit().then(() => {
               userStore.setInfo({ initFlag: true });
