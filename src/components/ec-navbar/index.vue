@@ -2,6 +2,7 @@
 import AppMenu from '@/components/ec-navbar/AppMenu.vue';
 import TopLogo from '@/components/ec-navbar/TopLogo.vue';
 import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
+import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
 </script>
 
 <template>
@@ -11,7 +12,9 @@ import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
       <TopLogo />
       <HomeBtn />
     </div>
-    <div class="right-side"></div>
+    <div class="right-side">
+      <FeedBackBtn />
+    </div>
   </div>
 </template>
 
