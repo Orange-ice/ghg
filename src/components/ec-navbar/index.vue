@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppMenu from '@/components/ec-navbar/AppMenu.vue';
 import TopLogo from '@/components/ec-navbar/TopLogo.vue';
+import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import TopLogo from '@/components/ec-navbar/TopLogo.vue';
     <div class="left-side">
       <AppMenu />
       <TopLogo />
+      <HomeBtn />
     </div>
     <div class="right-side"></div>
   </div>
