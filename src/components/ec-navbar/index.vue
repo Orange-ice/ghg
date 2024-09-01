@@ -5,6 +5,7 @@ import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
 import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
 import ContactBtn from '@/components/ec-navbar/ContactBtn.vue';
 import NoteBtn from '@/components/ec-navbar/NoteBtn.vue';
+import HelpBtn from '@/components/ec-navbar/HelpBtn.vue';
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import NoteBtn from '@/components/ec-navbar/NoteBtn.vue';
       <a-space :size="0">
         <NoteBtn />
         <ContactBtn />
-<!--        <HelpBtn />-->
+        <HelpBtn />
 <!--        <MessageBtn />-->
       </a-space>
       <div class="split-line"></div>
