@@ -16,4 +16,15 @@ const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 
-export { isLogin, getToken, setToken, clearToken };
+function removeItem(key: string) {
+  localStorage.removeItem(key);
+}
+
+function clearLoginStorage() {
+  clearToken();
+  removeItem('iconUrl');
+  removeItem('logoUrl');
+}
+
+
+export { isLogin, getToken, setToken, clearToken, clearLoginStorage, removeItem };

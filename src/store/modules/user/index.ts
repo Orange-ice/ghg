@@ -59,7 +59,8 @@ const useUserStore = defineStore('user', {
       licenseStatus: '',
       indexLogoUrl: '',
       indexSkipUrl: '',
-      isAuth: ''
+      isAuth: '',
+      pic: '',
     },
     lcaStatus: {
       expireDate: '',

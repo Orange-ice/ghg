@@ -7,6 +7,7 @@ import ContactBtn from '@/components/ec-navbar/ContactBtn.vue';
 import NoteBtn from '@/components/ec-navbar/NoteBtn.vue';
 import HelpBtn from '@/components/ec-navbar/HelpBtn.vue';
 import MessageBtn from '@/components/ec-navbar/MessageBtn.vue';
+import UserArea from '@/components/ec-navbar/UserArea.vue';
 </script>
 
 <template>
@@ -25,7 +26,7 @@ import MessageBtn from '@/components/ec-navbar/MessageBtn.vue';
         <MessageBtn />
       </a-space>
       <div class="split-line"></div>
-<!--      <UserArea />-->
+      <UserArea />
     </div>
   </div>
 </template>

@@ -71,5 +71,6 @@ module.exports = {
     'vue/attributes-order': 0,
     'prefer-template': 0,
     'no-else-return': 0,
+    'import/order': 0,
   }
 };

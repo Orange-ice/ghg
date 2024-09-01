@@ -22,4 +22,15 @@ export const regexUrl = new RegExp(
   'i'
 );
 
+/**
+ * @description 跳转到登录页
+ * */
+export function toLogin() {
+  if (import.meta.env.MODE === 'development') {
+    window.location.href = '/login';
+  } else {
+    window.location.href = '/workbench/login';
+  }
+}
+
 export default null;

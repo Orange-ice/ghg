@@ -58,6 +58,7 @@ export interface WorkBenchUserInfo {
   indexSkipUrl: string;
   /** 0:未认证，1：认证中，2：已认证，3：认证失败 */
   isAuth: string;
+  pic:string
 
   // [key: string]: any;
 }
