@@ -3,7 +3,7 @@ import {
   login as userLogin,
   logout as userLogout,
   getUserInfo,
-  LoginData, userDetail, userRoles,
+  LoginData, userDetail, userRoles, userWebInfo,
 } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
@@ -69,6 +69,13 @@ const useUserStore = defineStore('user', {
       appList: [],
       appMenuList: []
     },
+    webInfo: {
+      logoutRedirectUrl: '',
+      loginLogo: '',
+      icp: '',
+      picp: '',
+      phone: ''
+    },
 
   }),
 
@@ -121,6 +128,18 @@ const useUserStore = defineStore('user', {
       if (res.data) {
         this.setInfo({ workBenchRole: res.data });
       }
+    },
+    async getWebInfo() {
+      const res = await userWebInfo();
+      if(res.data){
+        this.setInfo({webInfo: res.data.webInfo})
+      }
+      // if (!error && data) {
+      //   this.setWebInfo(data.webInfo);
+      //   return Promise.resolve();
+      // } else {
+      //   return Promise.reject(error);
+      // }
     },
 
     async initInfo(){

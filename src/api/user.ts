@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { RouteRecordNormalized } from 'vue-router';
-import { LcaStatus, UserRoleTypes, UserState, WorkBenchUserInfo } from '@/store/modules/user/types';
+import { LcaStatus, UserRoleTypes, UserState, WebInfo, WorkBenchUserInfo } from '@/store/modules/user/types';
 import { API_PREFIX } from '@/api/prefix';
 
 export interface LoginData {
@@ -57,4 +57,11 @@ export function findLca(params: { companyId: string }) {
   });
 }
 
-
+export function userWebInfo() {
+  return axios.get<{webInfo: WebInfo}>('/feign/sys_config/info/0', {
+    headers: {
+      isFeign: 'true'
+    },
+    prefix: API_PREFIX.BASIC
+  });
+}

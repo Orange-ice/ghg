@@ -3,6 +3,7 @@ import AppMenu from '@/components/ec-navbar/AppMenu.vue';
 import TopLogo from '@/components/ec-navbar/TopLogo.vue';
 import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
 import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
+import ContactBtn from '@/components/ec-navbar/ContactBtn.vue';
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
     </div>
     <div class="right-side">
       <FeedBackBtn />
+      <ContactBtn />
     </div>
   </div>
 </template>
@@ -127,4 +129,22 @@ import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
 }
 
 
+</style>
+
+<style lang="less">
+.arco-btn-secondary.nav-btn {
+  margin-right: 16px;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background-color: transparent;
+  color: rgb(var(--gray-8));
+  font-size: 24px;
+  border-radius: 6px;
+  text-align: center;
+  &:hover {
+    background-color: var(--color-fill-2);
+  }
+}
 </style>

@@ -34,6 +34,10 @@ export default mergeConfig(
           target: proxyUrl,
           changeOrigin: true,
         },
+        [API_PREFIX.BASIC]: {
+          target: proxyUrl,
+          changeOrigin: true,
+        },
       },
     },
     plugins: [

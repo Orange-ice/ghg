@@ -12,7 +12,7 @@ import App from './App.vue';
 // 样式通过 arco-plugin 插件导入。详见目录文件 config/plugin/arcoStyleImport.ts
 // https://arco.design/docs/designlab/use-theme-package
 import 'virtual:uno.css';
-import 'the-new-css-reset/css/reset.css';
+// import 'the-new-css-reset/css/reset.css';
 import '@/assets/style/global.less';
 import '@/api/interceptor';
 

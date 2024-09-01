@@ -30,6 +30,7 @@ export interface UserState {
   workBenchUserInfo: WorkBenchUserInfo;
   workBenchRole: UserRoleTypes;
   lcaStatus:LcaStatus
+  webInfo: any;
 
   initFlag: boolean;
 }
@@ -106,4 +107,18 @@ export interface UserRoleTypes {
   buttons: string[];
   menuModule: MenuPageType[];
   menuPage: MenuPageType[];
+}
+
+export interface WebInfo {
+  loginLogo: string;
+  icp: string;
+  picp: string;
+  phone: string;
+  loginTitle?: string;
+  logoutRedirectUrl?: string;
+  mainLogo?: string;
+  mainLogoUrl?: string;
+  phoneArr?:[{address:string;phone: string}];
+
+  // [key: string]: any;
 }

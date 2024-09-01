@@ -6,11 +6,14 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed } from 'vue';
+  import { computed, onMounted } from 'vue';
   import enUS from '@arco-design/web-vue/es/locale/lang/en-us';
   import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn';
   import GlobalSetting from '@/components/global-setting/index.vue';
   import useLocale from '@/hooks/locale';
+  import { useUserStore } from '@/store';
+
+  const userStore = useUserStore()
 
   const { currentLocale } = useLocale();
   const locale = computed(() => {
@@ -23,4 +26,8 @@
         return enUS;
     }
   });
+
+  onMounted(() => {
+    userStore.getWebInfo();
+  })
 </script>
