@@ -1,7 +1,7 @@
 <template>
   <a-layout class="layout">
     <div class="layout-navbar">
-      <NavBar />
+      <EcNavbar />
     </div>
     <a-layout-content class="layout-main-content">
       <router-view />
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-  import NavBar from '@/components/navbar/index.vue';
+  import EcNavbar from '@/components/ec-navbar/index.vue';
 
   defineOptions({
     name: 'MainLayout',
