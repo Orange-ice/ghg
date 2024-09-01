@@ -1,3 +1,5 @@
+import Socket from '@/socket';
+
 export type RoleType = '' | '*' | 'admin' | 'user';
 export interface UserState {
   // name?: string;
@@ -30,7 +32,9 @@ export interface UserState {
   workBenchUserInfo: WorkBenchUserInfo;
   workBenchRole: UserRoleTypes;
   lcaStatus:LcaStatus
-  webInfo: any;
+  webInfo: WebInfo;
+  wbSocket?: Socket<string, MessageType>;
+  unreadCount?: number;
 
   initFlag: boolean;
 }
@@ -121,4 +125,14 @@ export interface WebInfo {
   phoneArr?:[{address:string;phone: string}];
 
   // [key: string]: any;
+}
+
+export interface MessageType {
+  uuid: string;
+  title: string;
+  content: string;
+  sendType: string;
+  createTime: string;
+  billId?: string;
+  readTime?: string;
 }

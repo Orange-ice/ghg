@@ -7,7 +7,10 @@ import {
 } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
-import { UserState } from './types';
+import Socket from '@/socket';
+import { getMessageList } from '@/api/message';
+import { socketUrl } from '@/config/socketUrl';
+import { MessageType, UserState } from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
@@ -117,8 +120,8 @@ const useUserStore = defineStore('user', {
           res.data.licenseStatus = '0';
         }
         this.setInfo({ workBenchUserInfo: res.data });
-        // this.initWebSocket(data.userId);
-        // this.getMsgList();
+        this.initWebSocket(res.data.userId);
+        this.getMsgList();
         // return Promise.resolve();
       }
     },
@@ -146,6 +149,39 @@ const useUserStore = defineStore('user', {
       await Promise.all([this.info(),this.getWorkbenchUserInfo(),this.getUserRoles()])
     },
 
+    async getMsgList() {
+      const res = await getMessageList(this.workBenchUserInfo.userId, {
+        page: 1,
+        size: 1,
+        readType: '0'
+      });
+      this.setInfo({ unreadCount: res.total || 0 });
+    },
+    initWebSocket(userId: string) {
+      if (!this.wbSocket) {
+        this.wbSocket = new Socket<string, MessageType>({
+          url: `${socketUrl}${userId}`
+        });
+        this.wbSocket.onmessage(() => {
+          this.unreadCount!+=1;
+          // this.setInfo({ msgCount: 1 });
+          // Notification.info({
+          //   title: data.title,
+          //   content: data.content,
+          //   closable: true,
+          //   duration: 5000
+          // });
+        });
+      }
+    },
+    closeWebSocket() {
+      if (this.wbSocket) {
+        this.wbSocket.destroy();
+        this.wbSocket = undefined;
+      }
+    },
+
+
 
     // Login
     async login(loginForm: LoginData) {
@@ -162,6 +198,7 @@ const useUserStore = defineStore('user', {
       this.resetInfo();
       clearToken();
       removeRouteListener();
+      this.closeWebSocket();
       appStore.clearServerMenu();
     },
     // Logout

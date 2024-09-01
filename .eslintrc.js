@@ -67,6 +67,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-param-reassign': 0,
     'prefer-regex-literals': 0,
-    'import/no-extraneous-dependencies': 0
+    'import/no-extraneous-dependencies': 0,
+    'vue/attributes-order': 0,
+    'prefer-template': 0,
+    'no-else-return': 0,
   }
 };
