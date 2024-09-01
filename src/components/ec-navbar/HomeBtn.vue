@@ -1,6 +1,6 @@
 <template>
   <a-button class="home-btn" @click="toHome()">
-    <iconpark-icon name="homebtn" size="16" style="margin-right: 6px;margin-top: 4px"></iconpark-icon>
+    <iconpark-icon name="homebtn" size="16" style="margin-right: 6px;"></iconpark-icon>
     工作台
   </a-button>
 </template>
