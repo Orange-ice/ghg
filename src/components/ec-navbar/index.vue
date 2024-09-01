@@ -4,6 +4,7 @@ import TopLogo from '@/components/ec-navbar/TopLogo.vue';
 import HomeBtn from '@/components/ec-navbar/HomeBtn.vue';
 import FeedBackBtn from '@/components/ec-navbar/FeedBackBtn.vue';
 import ContactBtn from '@/components/ec-navbar/ContactBtn.vue';
+import NoteBtn from '@/components/ec-navbar/NoteBtn.vue';
 </script>
 
 <template>
@@ -15,7 +16,14 @@ import ContactBtn from '@/components/ec-navbar/ContactBtn.vue';
     </div>
     <div class="right-side">
       <FeedBackBtn />
-      <ContactBtn />
+      <a-space :size="0">
+        <NoteBtn />
+        <ContactBtn />
+<!--        <HelpBtn />-->
+<!--        <MessageBtn />-->
+      </a-space>
+      <div class="split-line"></div>
+<!--      <UserArea />-->
     </div>
   </div>
 </template>
